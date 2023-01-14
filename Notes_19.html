@@ -1,0 +1,207 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 19<br>Manipulating Images</h1>
+<ol>
+    <li>Computer Image Fundamentals
+        <ul>
+            <li>Colors and RGBA Values</li>
+            <li>Coordinates and Box Tuples</li>
+        </ul>
+    </li>
+    <li>Manipulating Images with Pillow
+        <ul>
+            <li>Working with the Image Data Type</li>
+            <li>Cropping Images</li>
+            <li>Copying and Pasting Images onto Other Images</li>
+            <li>Resizing an Image</li>
+            <li>Rotating and Flipping Images</li>
+            <li>Changing Individual Pixels</li>
+        </ul>
+    </li>
+    <li>Project: Adding a Logo
+        <ul>
+            <li>
+                Step 1: Open the Logo Image<br>
+                Step 2: Loop Over All Files and Open Images<br>
+                Step 3: Resize the Images<br>
+                Step 4: Add the Logo and Save the Changes
+            </li>
+            <li>Ideas for Similar Programs</li>
+        </ul>
+    </li>
+    <li>Drawing on Images
+        <ul>
+            <li>Drawing Shapes</li>
+            <li>Points</li>
+            <li>Lines</li>
+            <li>Rectangles</li>
+            <li>Ellipses</li>
+            <li>Polygons</li>
+            <li>Drawing Example</li>
+            <li>Drawing Text</li>
+        </ul>
+    </li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Projects
+        <ul>
+            <li>Extending and Fixing the Chapter Project Programs</li>
+            <li>Identifying Photo Folders on the Hard Drive</li>
+            <li>Custom Seating Cards</li>
+        </ul>
+    </li>
+</ol>
+
+<h1>Chapter 19<br>Manipulating Images</h1>
+<ul>
+    <li>pip install pillow</li>
+</ul>
+<h2>Computer Image Fundamentals</h2>
+
+<h3>Colors and RGBA Values</h3>
+<ul>
+    <li>ImageColor.getcolor()</li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/de64fff76d670b79a4d44bd6e5d67c25.js"></script>
+
+<h3>Coordinates and Box Tuples</h3>
+<p>Image pixels are addressed with x- and y-coordinates, which respectively specify a pixel’s horizontal and vertical locations in an image.</p>
+
+<h2>Manipulating Images with Pillow</h2>
+<p>To load the image, import the Image module from Pillow and call Image.open(), passing it the image’s filename.</p>
+<script src="https://gist.github.com/TeddyCatTX/8525645b3550f40016e2a7977fd95740.js"></script>
+
+<h3>Working with the Image Data Type</h3><p>An Image object has several useful attributes that give you basic information about the image file it was loaded from: its width and height, the filename, and the graphics format (such as JPEG, GIF, or PNG).</p>
+<script src="https://gist.github.com/TeddyCatTX/07a4b6f64a1c488c12daf6aed5ee444e.js"></script>
+
+<p>Pillow also provides the Image.new() function, which returns an Image object—much like Image.open(), except the image represented by Image.new()’s object will be blank. The arguments to Image.new() are as follows:</p>
+<script src="https://gist.github.com/TeddyCatTX/d09e08515c5d9595119042716bf33053.js"></script>
+
+<h3>Cropping Images</h3>
+<p>Cropping an image means selecting a rectangular region inside an image and removing everything outside the rectangle.</p>
+<script src="https://gist.github.com/TeddyCatTX/d4456e5c828cdba25d841f87fb96d4c7.js"></script>
+
+<h3>Copying and Pasting Images onto Other Images</h3>
+
+<p>The copy() method will return a new Image object with the same image as the Image object it was called on.</p>
+<script src="https://gist.github.com/TeddyCatTX/11e8f82cccdf3abb54b31d6d40ebdf06.js"></script>
+
+<p>The paste() method is called on an Image object and pastes another image on top of it.</p>
+<script src="https://gist.github.com/TeddyCatTX/1ffb66e9eac89de3a2855a618abd4528.js"></script>
+
+<p>To tile Zophie’s head across the entire image</p>
+<script src="https://gist.github.com/TeddyCatTX/7568f2262440a58cc5a70e281c0e7bf4.js"></script>
+
+<h3>Resizing an Image</h3>
+<p>The resize() method is called on an Image object and returns a new Image object of the specified width and height.</p>
+<script src="https://gist.github.com/TeddyCatTX/f60d86473e479d4869274dfc46693893.js"></script>
+
+<h3>Rotating and Flipping Images</h3>
+<p>Images can be rotated with the rotate() method, which returns a new Image object of the rotated image and leaves the original Image object unchanged.</p>
+<script src="https://gist.github.com/TeddyCatTX/6988f76ea9383b3bfd3e261f724e1dff.js"></script>
+
+<p>The rotate() method has an optional expand keyword argument that can be set to True to enlarge the dimensions of the image to fit the entire rotated new image.</p>
+<script src="https://gist.github.com/TeddyCatTX/21e8cf5e563193765d9ad54771266391.js"></script>
+
+<p>You can also get a “mirror flip” of an image with the transpose() method.</p>
+<script src="https://gist.github.com/TeddyCatTX/7ec46172e4b1565c3efc258f566742bf.js"></script>
+
+<p>The color of an individual pixel can be retrieved or set with the getpixel() and putpixel() methods.</p>
+<script src="https://gist.github.com/TeddyCatTX/cc87f0608dd7b4c0a63d73ae3ef0c642.js"></script>
+
+<h3>Changing Individual Pixels</h3>
+<p>The color of an individual pixel can be retrieved or set with the getpixel() and putpixel() methods.</p>
+<script src="https://gist.github.com/TeddyCatTX/f81628ba704b9b9599a1f44778e23cb2.js"></script>
+
+<h2>Project: Adding a Logo</h2>
+
+<h3>
+    Step 1: Open the Logo Image
+    <br>Step 2: Loop Over All Files and Open Images
+    <br>Step 3: Resize the Images
+    <br>Step 4: Add the Logo and Save the Changes
+</h3>
+<script src="https://gist.github.com/TeddyCatTX/7238b27b0748678bb2868f9b6a13ddef.js"></script>
+
+<h3>Ideas for Similar Programs</h3>
+<ul>
+    <li>Add text or a website URL to images.</li>
+    <li>Add timestamps to images.</li>
+    <li>Copy or move images into different folders based on their sizes.</li>
+    <li>Add a mostly transparent watermark to an image to prevent others from copying it.</li>
+</ul>
+
+<h2>Drawing on Images</h2>
+<p>If you need to draw lines, rectangles, circles, or other simple shapes on an image, use Pillow’s ImageDraw module.</p>
+<script src="https://gist.github.com/TeddyCatTX/04337a9bbaea68cea39ec2eb22f9c577.js"></script>
+
+<h3>Drawing Shapes</h3>
+<p>The following ImageDraw methods draw various kinds of shapes on the image. The fill and outline parameters for these methods are optional and will default to white if left unspecified.</p>
+
+<h3>Points</h3>
+<p>The point(xy, fill) method draws individual pixels.</p>
+
+<h3>Lines</h3>
+<p>The line(xy, fill, width) method draws a line or series of lines.</p>
+
+<h3>Rectangles</h3>
+<p>The rectangle(xy, fill, outline) method draws a rectangle.</p>
+
+<h3>Ellipses</h3>
+<p>The ellipse(xy, fill, outline) method draws an ellipse.</p>
+
+<h3>Polygons</h3>
+<p>The polygon(xy, fill, outline) method draws an arbitrary polygon.</p>
+
+<h3>Drawing Example</h3>
+<script src="https://gist.github.com/TeddyCatTX/51f1cd1454c4f835801bec717f9c91d5.js"></script>
+<a href="https://pillow.readthedocs.io/en/latest/reference/ImageDraw.html" target="_blank">Other shape-drawing methods for ImageDraw objects</a>
+
+<h3>Drawing Text</h3>
+<p>The ImageDraw object also has a text() method for drawing text onto an image. The text() method takes four arguments: xy, text, fill, and font.</p>
+<script src="https://gist.github.com/TeddyCatTX/c9130c31815fa614637bd8001a4d2139.js"></script>
+
+<h2>Summary</h2>
+
+<h2>Practice Questions</h2>
+<ol>
+    <li>What is an RGBA value?
+        <br><br>An RGBA value is a tuple of 4 integers, each ranging from 0 to 255. The four integers correspond to the amount of red, green, blue, and alpha (transparency) in the color.
+    <br><br></li>
+    <li>How can you get the RGBA value of 'CornflowerBlue' from the Pillow module?
+        <br><br>A function call to ImageColor.getcolor('CornflowerBlue', 'RGBA') will return (100, 149, 237, 255), the RGBA value for that color.
+        <br><br></li>
+    <li>What is a box tuple?
+        <br><br>A box tuple is a tuple value of four integers: the left-edge x-coordinate, the top-edge y-coordinate, the width, and the height, respectively.
+        <br><br></li>
+    <li>What function returns an Image object for, say, an image file named zophie.png?
+        <br><br>Image.open('zophie.png')
+        <br><br></li>
+    <li>How can you find out the width and height of an Image object’s image?
+        <br><br>imageObj.size is a tuple of two integers, the width and the height.
+        <br><br></li>
+    <li>What method would you call to get Image object for a 100×100 image, excluding the lower-left quarter of it?
+        <br><br>imageObj.crop((0, 50, 50, 50)). Notice that you are passing a box tuple to crop(), not four separate integer arguments.
+        <br><br></li>
+    <li>After making changes to an Image object, how could you save it as an image file?
+        <br><br>Call the imageObj.save('new_filename.png') method of the Image object.
+        <br><br></li>
+    <li>What module contains Pillow’s shape-drawing code?
+        <br><br>The ImageDraw module contains code to draw on images.
+        <br><br></li>
+    <li>Image objects do not have drawing methods. What kind of object does? How do you get this kind of object?
+        <br><br>ImageDraw objects have shape-drawing methods such as point(), line(), or rectangle(). They are returned by passing the Image object to the ImageDraw.Draw() function.
+    </li>
+</ol>
+
+<h2>Practice Projects</h2>
+<h3>Extending and Fixing the Chapter Project Programs</h3>
+<script src="https://gist.github.com/TeddyCatTX/caefd7c7297ab942f56bc0320238c422.js"></script>
+
+<h3>Identifying Photo Folders on the Hard Drive</h3>
+<a href="https://github.com/thomaskellough/Automate-The-Boring-Stuff/blob/master/Practice-Projects/Ch%2017%20-%20Identifying%20Photo%20Folders%20on%20the%20Hard%20Drive.py" target="_blank">thomaskellough/Automate-The-Boring-Stuff</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/fd4bf91ce2859c17f55b17e9bac3e7f3.js"></script>
+
+<h3>Custom Seating Cards</h3>
+<a href="https://github.com/IanFindlay/automate-the-boring-stuff-projects/blob/master/Chapter%2017/custom-cards.py" target="_blank">automate-the-boring-stuff-projects/Chapter 17/custom-cards.py</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/b41e8fc11f892df709d46f518a93e15c.js"></script>

@@ -1,0 +1,286 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 17<br>Keeping Time, Scheduling Tasks, and Launching Programs</h1>
+<ol>
+    <li>The time Module
+        <ul>
+            <li>The time.time() Function</li>
+            <li>The time.sleep() Function</li>
+        </ul>
+    </li>
+    <li>Rounding Numbers</li>
+    <li>Project: Super Stopwatch
+        <ul>
+            <li>Step 1: Set Up the Program to Track Times<br>Step 2: Track and Print Lap Times</li>
+            <li>Ideas for Similar Programs</li>
+        </ul>
+    </li>
+    <li>The datetime Module
+        <ul>
+            <li>The timedelta Data Type</li>
+            <li>Pausing Until a Specific Date</li>
+            <li>Converting datetime Objects into Strings</li>
+            <li>Converting Strings into datetime Objects</li>
+        </ul>
+    </li>
+    <li>Review of Python’s Time Functions</li>
+    <li>Multithreading
+        <ul>
+            <li>Passing Arguments to the Thread’s Target Function</li>
+            <li>Concurrency Issues</li>
+        </ul>
+    </li>
+    <li>Project: Multithreaded XKCD Downloader
+        <ul>
+            <li>Step 1: Modify the Program to Use a Function<br>Step 2: Create and Start Threads<br>Step 3: Wait for All Threads to End</li>
+        </ul>
+    </li>
+    <li>Launching Other Programs from Python
+        <ul>
+            <li>Passing Command Line Arguments to the Popen() Function</li>
+            <li>Task Scheduler, launchd, and cron</li>
+            <li>Opening Websites with Python</li>
+            <li>Running Other Python Scripts</li>
+            <li>Opening Files with Default Applications</li>
+        </ul>
+    </li>
+    <li>Project: Simple Countdown Program
+        <ul>
+            <li>Step 1: Count Down<br>Step 2: Play the Sound File</li>
+            <li>Ideas for Similar Programs</li>
+        </ul>
+    </li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Projects
+        <ul>
+            <li>Prettified Stopwatch</li>
+            <li>Scheduled Web Comic Downloader</li>
+        </ul>
+    </li>
+</ol>
+
+<h1>Chapter 17<br>Keeping Time, Scheduling Tasks, and Launching Programs</h1>
+<h2>The time Module</h2>
+<h3>The time.time() Function</h3>
+<p>The number of seconds since 12 AM on January 1, 1970</p>
+<script src="https://gist.github.com/TeddyCatTX/1034975cd8a1ec4c0c426839c64a7bb0.js"></script>
+<p>Measure how long a piece of code takes to run</p>
+<script src="https://gist.github.com/TeddyCatTX/2fc960674489e465fb538465b914d845.js"></script>
+<p>The time.ctime() function returns a string description of the current time</p>
+<script src="https://gist.github.com/TeddyCatTX/7337186b0b3e096be3a73c5c02afd833.js"></script>
+
+<h3>The time.sleep() Function</h3>
+<p>Pause your program for a while</p>
+<script src="https://gist.github.com/TeddyCatTX/c72a2165950eb590e73190a7a8778683.js"></script>
+
+<h2>Rounding Numbers</h2>
+<p>Python’s built-in round() function</p>
+<script src="https://gist.github.com/TeddyCatTX/4b396c2448ba3c068cfbe638ed91229c.js"></script>
+
+<h2>Project: Super Stopwatch</h2>
+<h3>
+    Step 1: Set Up the Program to Track Times<br>
+    Step 2: Track and Print Lap Times
+</h3>
+<script src="https://gist.github.com/TeddyCatTX/541c32f27565876005cc59e23ac94579.js"></script>
+
+<h3>Ideas for Similar Programs</h3>
+<ul>
+    <li>Create a simple timesheet app that records when you type a person’s name and uses the current time to clock them in or out.</li>
+    <li>Add a feature to your program to display the elapsed time since a process started, such as a download that uses the requests module. (See Chapter 12.)</li>
+    <li>Intermittently check how long a program has been running and offer the user a chance to cancel tasks that are taking too long.
+</li>
+</ul>
+
+<h2>The datetime Module</h2>
+<p>Do arithmetic with dates</p>
+<script src="https://gist.github.com/TeddyCatTX/59ba5cd26b57490d0ad99a5abb9751b6.js"></script>
+<p>The datetime.datetime.fromtimestamp() function</p>
+<script src="https://gist.github.com/TeddyCatTX/6976414b91f093e8f7ee49b4686f853d.js"></script>
+<p>Compare datetime objects with each other using comparison operators</p>
+<script src="https://gist.github.com/TeddyCatTX/f3ab33ef43afe39e3823407c2919cdfe.js"></script>
+
+<h3>The timedelta Data Type</h3>
+<p>Duration of time</p>
+<script src="https://gist.github.com/TeddyCatTX/a88d4510658a84afa1ed3dbd9cb5053c.js"></script>
+<p>To calculate the date 1,000 days from now</p>
+<script src="https://gist.github.com/TeddyCatTX/c21d4fdf09e68f8f263afb5bd8f5cab4.js"></script>
+<p>timedelta objects can be added / subtracted / multiplied or divided</p>
+<script src="https://gist.github.com/TeddyCatTX/0ecd923cff3f48bccb61a4402573a87b.js"></script>
+
+<h3>Pausing Until a Specific Date</h3>
+<p>The time.sleep() method</p>
+<script src="https://gist.github.com/TeddyCatTX/38187924036703ce3566c0f400aa0163.js"></script>
+
+<h3>Converting datetime Objects into Strings</h3>
+<p>The strftime() method</p>
+<script src="https://gist.github.com/TeddyCatTX/5e3fdd23a1fef9787af327a3990f214b.js"></script>
+
+<h3>Converting Strings into datetime Objects</h3>
+<p>The datetime.datetime.strptime() function</p>
+<script src="https://gist.github.com/TeddyCatTX/66fed15b354791183061333a512d1700.js"></script>
+
+<h2>Review of Python’s Time Functions</h2>
+<p>Three different types of values used to represent time:</p>
+<ul>
+    <li>A Unix epoch timestamp (used by the time module) 
+        <br> - is a float or integer value of the number of seconds since 12 AM on January 1, 1970, UTC.<br><br></li>
+    <li>A datetime object (of the datetime module) 
+        <br> - has integers stored in the attributes year, month, day, hour, minute, and second.<br><br></li>
+    <li>A timedelta object (of the datetime module) 
+        <br> - represents a time duration, rather than a specific moment.<br><br></li>
+</ul>
+
+<p>Here’s a review of time functions and their parameters and return values:</p>
+<ul>
+    <li>time.time()       
+        <br><br> - This function returns an epoch timestamp float value of the current moment.
+        <br><br><script src="https://gist.github.com/TeddyCatTX/1cdd89d700b3f72bc5e2e7cd8156702c.js"></script>
+    </li>
+    <li>time.sleep(seconds)
+        <br><br> - This function stops the program for the number of seconds specified by the seconds argument.
+        <br><br><script src="https://gist.github.com/TeddyCatTX/27df338b246c494f8b36f2dec272678b.js"></script>
+    </li>
+    <li>datetime.datetime(year, month, day, hour, minute, second)
+        <br><br> - This function returns a datetime object of the moment specified by the arguments. If hour, minute, or second arguments are not provided, they default to 0.
+        <br><br><script src="https://gist.github.com/TeddyCatTX/10b1c925456ef97894a68f47613c95e0.js"></script>
+    </li>
+    <li>datetime.datetime.now()
+        <br><br> - This function returns a datetime object of the current moment.
+        <br><br><script src="https://gist.github.com/TeddyCatTX/51bdff9efc046b56a30115eb17fdad22.js"></script>
+    </li>
+    <li>datetime.datetime.fromtimestamp(epoch)        
+        <br><br> - This function returns a datetime object of the moment represented by the epoch timestamp argument.
+        <br><br><script src="https://gist.github.com/TeddyCatTX/7acae11b9c67f6e81a61b7db9dd6d70d.js"></script>    
+    </li>
+    <li>datetime.timedelta(weeks, days, hours, minutes, seconds, milliseconds, microseconds) 
+        <br><br> - This function returns a timedelta object representing a duration of time. The function’s keyword arguments are all optional and do not include month or year.
+        <br><br><script src="https://gist.github.com/TeddyCatTX/2897f6a5a7bb9e711a69e6cc7e1024a5.js"></script>
+    </li>
+    <li>total_seconds()
+        <br><br> - This method for timedelta objects returns the number of seconds the timedelta object represents.
+        <br><br><script src="https://gist.github.com/TeddyCatTX/7b700884e15a2781a96d53d86d1b5370.js"></script>
+    </li>
+    <li>strftime(format)
+        <br><br> - This method returns a string of the time represented by the datetime object in a custom format that’s based on the format string. See Table 17-1 for the format details.
+        <br><br><script src="https://gist.github.com/TeddyCatTX/c6cb13479bd531d57f1b500be9a781b4.js"></script>
+    </li>
+    <li>datetime.datetime.strptime(time_string, format)
+        <br><br> - This function returns a datetime object of the moment specified by time_string, parsed using the format string argument. See Table 17-1 for the format details.
+        <br><br><script src="https://gist.github.com/TeddyCatTX/1562d0dfc9c8345dc044687fb15f4f13.js"></script>
+    </li>
+</ul>
+
+<h2>Multithreading</h2>
+<p>To schedule some code to run after a delay or at a specific time</p>
+<script src="https://gist.github.com/TeddyCatTX/610b2774545eb43618467bf4f46491f0.js"></script>
+<p>To make a separate thread</p>
+<script src="https://gist.github.com/TeddyCatTX/f4f19bbf26f8111cb58ab011242e7640.js"></script>
+
+<h3>Passing Arguments to the Thread’s Target Function</h3>
+<script src="https://gist.github.com/TeddyCatTX/9b104059ac0efbefe53c1eef475be0d4.js"></script>
+<p>This is an incorrect way to create the new thread that calls print():</p>
+<script src="https://gist.github.com/TeddyCatTX/68d0ce9e7c3097972925701508cab76f.js"></script>
+
+<h3>Concurrency Issues</h3>
+<p>A beginner’s tutorial on multithreaded programming is available at <a href="https://nostarch.com/automatestuff2/" target="_blank">https://nostarch.com/automatestuff2/</a>.</p>
+<h2>Project: Multithreaded XKCD Downloader</h2>
+<h3>
+    Step 1: Modify the Program to Use a Function<br>
+    Step 2: Create and Start Threads<br>
+    Step 3: Wait for All Threads to End
+</h3>
+<script src="https://gist.github.com/TeddyCatTX/cea9be828af3f5fdbab70481ead79c70.js"></script>
+
+<h2>Launching Other Programs from Python</h2>
+<p>On Windows, right-click the application’s Start menu item and select Properties to view the application’s filename.</p>
+<script src="https://gist.github.com/TeddyCatTX/59fdf747b9c14b161dea4976571133d9.js"></script>
+<p>On Windows, enter the following into the interactive shell. Note that the wait() call will block until you quit the launched MS Paint program.</p>
+<script src="https://gist.github.com/TeddyCatTX/8c768ee45c90b50cd942828ca312f818.js"></script>
+
+<h3>Passing Command Line Arguments to the Popen() Function</h3>
+<p>This will not only launch the Notepad application but also have it immediately open the C:\Users\Al\hello.txt file.</p>
+<script src="https://gist.github.com/TeddyCatTX/09df49b155e137b2c09ab39d13a86bce.js"></script>
+
+<h3>Task Scheduler, launchd, and cron</h3>
+<ul>
+    <li>Task Scheduler on Windows allows you to schedule applications to launch at specific times.</li>
+</ul>
+
+<h3>Opening Websites with Python</h3>
+<p>This will open the website at the specified URL in the default web browser.</p>
+<script src="https://gist.github.com/TeddyCatTX/19deeb0a138b8f02440b96b29a6d6368.js"></script>
+<p>You can also specify which browser to use by passing an additional argument to the open() function. For example:</p>
+<script src="https://gist.github.com/TeddyCatTX/5aa6b9a7f413b60b3965e20f1f288b15.js"></script>
+<p>You can also use the open_new() function to open a URL in a new window:</p>
+<script src="https://gist.github.com/TeddyCatTX/f54ee6525cc273d09cef8d31478f507c.js"></script>
+
+<h3>Running Other Python Scripts</h3>
+<p>You can launch a Python script from Python just like any other application.</p>
+<script src="https://gist.github.com/TeddyCatTX/b9cb5be9e9d8faa8215c24d34a3d97e2.js"></script>
+
+<h3>Opening Files with Default Applications</h3>
+<script src="https://gist.github.com/TeddyCatTX/3d0046ed978c6dda489be7b6794736e3.js"></script>
+
+<h2>Project: Simple Countdown Program</h2>
+<h3>Step 1: Count Down<br>Step 2: Play the Sound File</h3>
+<script src="https://gist.github.com/TeddyCatTX/372afede33a296039164f767c91f3ff1.js"></script>
+
+<h3>Ideas for Similar Programs</h3>
+<ul>
+    <li>Use time.sleep() to give the user a chance to press CTRL-C to cancel an action, such as deleting files. Your program can print a “Press CTRL-C to cancel” message and then handle any KeyboardInterrupt exceptions with try and except statements.<br><br></li>
+    <li>For a long-term countdown, you can use timedelta objects to measure the number of days, hours, minutes, and seconds until some point (a birthday? an anniversary?) in the future.</li>
+</ul>
+
+<h2>Summary</h2>
+<ul>
+    <li>The time.time() function</li>
+    <li>The datetime module</li>
+    <li>The time.sleep() function</li>
+    <li>The threading module</li>
+    <li>The subprocess.Popen() function</li>
+    <li>The Popen() call</li>
+</ul>
+
+<h2>Practice Questions</h2>
+<ol>
+    <li>What is the Unix epoch?
+        <br>- A reference moment that many date and time programs use. The moment is January 1, 1970, UTC.<br><br>
+    </li>
+    <li>What function returns the number of seconds since the Unix epoch?
+        <br> - time.time()<br><br>
+    </li>
+    <li>How can you pause your program for exactly 5 seconds?
+        <br> - time.sleep(5)<br><br>
+    </li>
+    <li>What does the round() function return?
+        <br> - It returns the closest integer to the argument passed. For example, round(2.4) returns 2.<br><br>
+    </li>
+    <li>What is the difference between a datetime object and a timedelta object?
+        <br> - A datetime object represents a specific moment in time. A timedelta object represents a duration of time.<br><br>
+    </li>
+    <li>Using the datetime module, what day of the week was January 7, 2019?
+        <p>To find the day of the week for a given date using the datetime module, you can use the datetime.date class and the weekday() method. Here is an example of how to do this:</p>
+        <script src="https://gist.github.com/TeddyCatTX/425d7e95b324a0e7f405d67ade5798e9.js"></script>
+        <p>Alternatively, you can use the strftime() method to format the date as a string and include the name of the day of the week. Here is an example of how to do this:</p>
+        <script src="https://gist.github.com/TeddyCatTX/12203362315ac4f2c8e787bd76852c2c.js"></script>
+    </li>
+    <li>Say you have a function named spam(). How can you call this function and run the code inside it in a separate thread?<br><br>
+        <script src="https://gist.github.com/TeddyCatTX/db8a95c4ffda3768e235753ecfcb25a2.js"></script>
+    </li>
+    <li>What should you do to avoid concurrency issues with multiple threads?
+        <br> - Make sure that code running in one thread does not read or write the same variables as code running in another thread.
+    </li>
+</ol>
+
+<h2>Practice Projects</h2>
+
+<h3>Prettified Stopwatch</h3>
+<a href="https://github.com/megamillions/Prettified-Stopwatch/blob/master/prettifiedStopwatch.py" target="_blank">GitHub</a>
+<br><br>
+<script src="https://gist.github.com/TeddyCatTX/c1931c5e1357288813cd07165e12af50.js"></script>
+
+<h3>Scheduled Web Comic Downloader</h3>
+<a href="https://github.com/megamillions/Scheduled-Web-Comic-Downloader/blob/master/sWCD.py" target="_blank">GitHub</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/7cd2721721edb837c18a8fe1c98b6a3b.js"></script>

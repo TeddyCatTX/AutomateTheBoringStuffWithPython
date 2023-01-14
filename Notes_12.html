@@ -1,0 +1,279 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 12<br>Web Scraping</h1>
+<ol>
+    <li>Project: mapIt.py with the webbrowser Module
+        <ul>
+            <li>Step 1: Figure Out the URL</li>
+            <li>Step 2: Handle the Command Line Arguments</li>
+            <li>Step 3: Handle the Clipboard Content and Launch the Browser</li>
+            <li>Ideas for Similar Programs</li>
+        </ul>
+    </li>
+    <li>Downloading Files from the Web with the requests Module
+        <ul>
+            <li>Downloading a Web Page with the requests.get() Function</li>
+            <li>Checking for Errors</li>
+        </ul>
+    </li>
+    <li>Saving Downloaded Files to the Hard Drive
+        <ul>
+            <li>UNICODE ENCODINGS</li>
+        </ul>
+    </li>
+    <li>HTML
+        <ul>
+            <li>Resources for Learning HTML</li>
+            <li>A Quick Refresher</li>
+            <li>Viewing the Source HTML of a Web Page</li>
+            <li>Opening Your Browser’s Developer Tools</li>
+            <li>Using the Developer Tools to Find HTML Elements</li>
+        </ul>
+    </li>
+    <li>Parsing HTML with the bs4 Module
+        <ul>
+            <li>Creating a BeautifulSoup Object from HTML</li>
+            <li>Finding an Element with the select() Method</li>
+            <li>Getting Data from an Element’s Attributes</li>
+        </ul>
+    </li>
+    <li>Project: Opening All Search Results
+        <ul>
+            <li>Step 1: Get the Command Line Arguments and Request the Search Page</li>
+            <li>Step 2: Find All the Results</li>
+            <li>Step 3: Open Web Browsers for Each Result</li>
+            <li>Ideas for Similar Programs</li>
+        </ul>
+    </li>
+    <li>Project: Downloading All XKCD Comics
+        <ul>
+        <li>Step 1: Design the Program</li>
+        <li>Step 2: Download the Web Page</li>
+        <li>Step 3: Find and Download the Comic Image</li>
+        <li>Step 4: Save the Image and Find the Previous Comic</li>
+        <li>Ideas for Similar Programs</li>
+        </ul>
+    </li>
+    <li>Controlling the Browser with the selenium Module
+        <ul>
+        <li>Starting a selenium-Controlled Browser</li>
+        <li>Finding Elements on the Page</li>
+        <li>Clicking the Page</li>
+        <li>Filling Out and Submitting Forms</li>
+        <li>Sending Special Keys</li>
+        <li>Clicking Browser Buttons</li>
+        <li>More Information on Selenium</li>
+        </ul>
+    </li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Projects
+        <ul>
+            <li>Command Line Emailer</li>
+            <li>Image Site Downloader</li>
+            <li>2048</li>
+            <li>Link Verification</li>
+        </ul>
+    </li>
+</ol>
+<h1>Chapter 12<br>Web Scraping</h1>
+Modules that make it easy to scrape web pages in Python:
+<ul>
+    <li>webbrowser<br>Comes with Python and opens a browser to a specific page.</li>
+    <li>requests<br>Downloads files and web pages from the internet.</li>
+    <li>bs4<br>Parses HTML, the format that web pages are written in.</li>
+    <li>selenium<br>Launches and controls a web browser. The selenium module is able to fill in forms and simulate mouse clicks in this browser.</li>
+</ul>
+<h2>1) Project: mapIt.py with the webbrowser Module</h2>
+<script src="https://gist.github.com/TeddyCatTX/37daf56fb7a58596903f7e7735043b6c.js"></script>
+<h3>Step 1: Figure Out the URL<br>Step 2: Handle the Command Line Arguments<br>Step 3: Handle the Clipboard Content and Launch the Browser</h3>
+<script src="https://gist.github.com/TeddyCatTX/7d771449f3866c97517dbb8f3b9dbbae.js"></script>
+
+<h3>Ideas for Similar Programs</h3>
+
+<h2>2) Downloading Files from the Web with the requests Module</h2>
+<ul>
+    <li>pip install requests</li>
+    <li>import requests</li>
+</ul>
+
+<h3>2.1 Downloading a Web Page with the requests.get() Function</h3>
+Enter the following into the interactive shell:
+<ul>
+    <li>import requests</li>
+    <li>res = requests.get('https://automatetheboringstuff.com/files/rj.txt')</li>
+    <li>type(res)</li>
+    <li>res.status_code == requests.codes.ok</li>
+    <li>len(res.text)</li>
+    <li>print(res.text[:250])</li>
+</ul>
+
+<h3>2.2 Checking for Errors</h3>
+Enter the following into the interactive shell:
+<ul>
+    <li>res = requests.get('https://inventwithpython.com/page_that_does_not_exist')</li>
+    <li>res.raise_for_status()</li>
+</ul>
+If a failed download isn’t a deal breaker for your program, you can wrap the raise_for_status() line with try and except statements to handle this error case without crashing.<br><br>
+<script src="https://gist.github.com/TeddyCatTX/03661c859b2b1b808c5dd320a671fa08.js"></script>
+Always call raise_for_status() after calling requests.get(). You want to be sure that the download has actually worked before your program continues.
+
+<h2>3) Saving Downloaded Files to the Hard Drive</h2>
+<ol>
+    <li>Call requests.get() to download the file.</li>
+    <li>Call open() with 'wb' to create a new file in write binary mode.</li>
+    <li>Loop over the Response object’s iter_content() method.</li>
+    <li>Call write() on each iteration to write the content to the file.</li>
+    <li>Call close() to close the file.</li>
+</ol>
+<script src="https://gist.github.com/TeddyCatTX/ca68dfce29ca5e181dfc545397049c4f.js"></script>
+
+<h3>3.1 UNICODE ENCODINGS</h3>
+<a href="https://www.joelonsoftware.com/articles/Unicode.html" target="_blank">Must Know About Unicode and Character Sets</a><br>
+<a href="https://nedbatchelder.com/text/unipain.html" target="_blank">Pragmatic Unicode</a>
+
+<h2>4) HTML</h2>
+<h3>4.1 Resources for Learning HTML</h3>
+<ul>
+    <li>https://developer.mozilla.org/en-US/learn/html/</li>
+    <li>https://htmldog.com/guides/html/beginner/</li>
+    <li>https://www.codecademy.com/learn/learn-html</li>
+</ul>
+
+<h3>4.2 A Quick Refresher</h3>
+You will often instruct your programs to seek out an element by its id attribute, so figuring out an element’s id attribute using the browser’s developer tools is a common task in writing web scraping programs.
+
+<h3>4.3 Viewing the Source HTML of a Web Page</h3>
+Right-click (or CTRL-click on macOS) any web page in your web browser, and select View Source or View page source to see the HTML text of the page.
+
+<h3>4.4 Opening Your Browser’s Developer Tools</h3>
+Press F12 to make them appear (see Figure 12-4). Pressing F12 again will make the developer tools disappear.<br><br>
+<a href="https://stackoverflow.com/a/1732454/1893164/" target="_blank">DON’T USE REGULAR EXPRESSIONS TO PARSE HTML</a>
+
+<h3>4.5 Using the Developer Tools to Find HTML Elements</h3>
+
+<h2>5) Parsing HTML with the bs4 Module</h2>
+<ul>
+    <li>pip install beautifulsoup4</li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/c1c55c5af100e51a591dba5d1b82eabc.js"></script>
+<h3>5.1 Creating a BeautifulSoup Object from HTML</h3>
+<script src="https://gist.github.com/TeddyCatTX/1ef8a3c77328fa75fb1e4c421c3b40cf.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/759e18f290b8a0b5777584d7bb7b9dab.js"></script>
+
+<h3>5.2 Finding an Element with the select() Method</h3>
+<ul>
+    <li><a href="https://nostarch.com/automatestuff2/" target="_blank">Selector Tutorial</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/6b28751f373ba024ed89a3617341d3ae.js"></script>
+
+<h3>5.3 Getting Data from an Element’s Attributes</h3>
+<script src="https://gist.github.com/TeddyCatTX/d39864c450f160cfc6f5b3354135ad4a.js"></script>
+
+<h2>6) Project: Opening All Search Results</h2>
+<h3>Step 1: Get the Command Line Arguments and Request the Search Page
+    <br>Step 2: Find All the Results
+    <br>Step 3: Open Web Browsers for Each Result
+</h3>
+<script src="https://gist.github.com/TeddyCatTX/96dbc63c172d34882a0362015f408e88.js"></script>
+<h3>Ideas for Similar Programs</h3>
+
+<h2>7) Project: Downloading All XKCD Comics</h2>
+
+<h3>Step 1: Design the Program
+    <br>Step 2: Download the Web Page
+    <br>Step 3: Find and Download the Comic Image
+    <br>Step 4: Save the Image and Find the Previous Comic
+</h3>
+<script src="https://gist.github.com/TeddyCatTX/7145559fd228b9d5b41e03b6db745526.js"></script>
+<ul>
+    <li><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank">Beautiful Soup’s other features from its documentation</a></li>
+</ul>
+<h3>Ideas for Similar Programs</h3>
+
+<h2>8) Controlling the Browser with the selenium Module</h2>
+<ul>
+    <li><a href="https://www.whatsmyua.info/" target="_blank">To see your user-agent string</a></li>
+    <li>pip install selenium</li>
+    <li><a href="https://www.geeksforgeeks.org/browser-automation-using-selenium/" target="_blank">Browser Automation Using Selenium</a></li>
+    <li><a href="https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path" target="_blank">Selenium using Python - Geckodriver executable needs to be in PATH</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/a9725371299958f0d2ba84105945dd02.js"></script>
+
+<h3>8.1 Starting a selenium-Controlled Browser</h3>
+<script src="https://gist.github.com/TeddyCatTX/b24ffad00dbd99f718886b77e36abd7b.js"></script>
+<h3>8.2 Finding Elements on the Page</h3>
+<script src="https://gist.github.com/TeddyCatTX/01d0e211a7a23289082ff42cef9b4542.js"></script>
+
+<h3>8.3 Clicking the Page</h3>
+<script src="https://gist.github.com/TeddyCatTX/2d36d6a65d8eda3ff1bf939b01ef9e5f.js"></script>
+
+<h3>8.4 Filling Out and Submitting Forms</h3>
+<script src="https://gist.github.com/TeddyCatTX/0605b88cd78ccb30d9185dbe7d735797.js"></script>
+
+<h3>8.5 Sending Special Keys</h3>
+<script src="https://gist.github.com/TeddyCatTX/ced43396ea9a708b4da537c66ced87d7.js"></script>
+
+<h3>8.6 Clicking Browser Buttons</h3>
+<ul>
+    <li>browser.back() Clicks the Back button.</li>
+    <li>browser.forward() Clicks the Forward button.</li>
+    <li>browser.refresh() Clicks the Refresh/Reload button.</li>
+    <li>browser.quit() Clicks the Close Window button.</li>
+</ul>
+
+<h3>8.7 More Information on Selenium</h3>
+<ul>
+    <li><a href="https://selenium-python.readthedocs.org/" target="_blank">selenium documentation</a></li>
+</ul>
+
+<h2>9) Summary</h2>
+
+<h2>10) Practice Questions</h2>
+<ol>
+    <li>
+        <ul>
+            <li>webbrowser - launch a web browser to a specific URL</li>
+            <li>requests - download files and pages from the web</li>
+            <li>bs4 - parses HTML</li>
+            <li>selenium - launch and control a browser</li>
+        </ul><br><br>
+    </li>
+    <li>The requests.get() function returns a Response object, which has a text attribute that contains the downloaded content as a string.<br><br></li>
+    <li>The raise_for_status() method raises an exception if the download had problems and does nothing if the download succeeded.<br><br></li>
+    <li>The status_code attribute of the Response object contains the HTTP status code.<br><br></li>
+    <li>After opening the new file on your computer in 'wb' “write binary” mode, use a for loop that iterates over the Response object’s iter_content() method to write out chunks to the file. Here’s an example:
+        <script src="https://gist.github.com/TeddyCatTX/3a2becb02237dc6e034a79abec9d0253.js"></script></li>
+    <li>F12 brings up the developer tools in Chrome. Pressing CTRL-SHIFT-C (on Windows and Linux) or image-OPTION-C (on OS X) brings up the developer tools in Firefox.<br><br></li>
+    <li>To view (in the developer tools) the HTML of a specific element on a web page, Right-click the element in the page and select Inspect Element from the menu.<br><br></li>
+    <li><script src="https://gist.github.com/TeddyCatTX/9b16ef7f82c70049a15462dc4a9f3740.js"></script></li>
+    <li><script src="https://gist.github.com/TeddyCatTX/f8e9350be5800cecebbd34b60ff709bc.js"></script></li>
+    <li><script src="https://gist.github.com/TeddyCatTX/65be24ea347030375d6739dfcae751a2.js"></script></li>
+    <li><script src="https://gist.github.com/TeddyCatTX/28aae25799957be32dbe467bb8840cfb.js"></script></li>
+    <li><script src="https://gist.github.com/TeddyCatTX/19d2d6089c01de426ae7ffda90dea859.js"></script></li>
+    <li>How would you store all the attributes of a Beautiful Soup Tag object in a variable named linkElem? <br>- linkElem.attrs<br><br></li>
+    <li>Running import selenium doesn’t work. How do you properly import the selenium module? <br>- The selenium module is imported with from selenium import webdriver.<br><br></li>
+    <li>What’s the difference between the find_element_* and find_elements_* methods? <br>- The find_element_* methods return the first matching element as a WebElement object. The find_elements_* methods return a list of all matching elements as WebElement objects.<br><br></li>
+    <li>What methods do Selenium’s WebElement objects have for simulating mouse clicks and keyboard keys? <br>- The click() and send_keys() methods simulate mouse clicks and keyboard keys, respectively.<br><br></li>
+    <li>You could call send_keys(Keys.ENTER) on the Submit button’s WebElement object, but what is an easier way to submit a form with selenium? <br>- Calling the submit() method on any element within a form submits the form.<br><br></li>
+    <li>How can you simulate clicking a browser’s Forward, Back, and Refresh buttons with selenium? <br>- The forward(), back(), and refresh() WebDriver object methods simulate these browser buttons.</li>
+</ol>
+<h2>11) Practice Projects</h2>
+<h3>11.1 Command Line Emailer</h3>
+<script src="https://gist.github.com/TeddyCatTX/684272123a616089314010b34eab8463.js"></script>
+<h3>11.2 Image Site Downloader</h3>
+<ul>
+    <li><a href="https://josealermaiii.github.io/python-tutorials/_modules/AutomateTheBoringStuff/Ch11/Projects/P2_imageDownloader.html" target="_blank">Source code for imageDownloader</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/81bf0d8c4e13cdc25d7f3a66decf03b4.js"></script>
+<h3>11.3 2048</h3>
+<ul>
+    <li><a href="https://play2048.co/" target="_blank">2048</a></li>
+    <li><a href="https://github.com/priyankjain/automate-the-boring-stuff-with-python/blob/master/chapter-11/2048.py" target="_blank">2048 Code</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/66b3a7d96f08a4ca41d1c06adebb6f43.js"></script>
+<h3>11.4 Link Verification</h3>
+<ul>
+    <li><a href="https://github.com/megamillions/Link-Verification/blob/master/linkVerification.py" target="_blank">Link-Verification Code</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/396da881122493cba68dfd4431091222.js"></script>

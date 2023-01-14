@@ -1,0 +1,449 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 18<br>Sending Email and Text Messages</h1>
+<ol>
+    <li>Sending and Receiving Email with the Gmail API
+        <ul>
+            <li>Enabling the Gmail API</li>
+            <li>Sending Mail from a Gmail Account</li>
+            <li>Reading Mail from a Gmail Account</li>
+            <li>Searching Mail from a Gmail Account</li>
+            <li>Downloading Attachments from a Gmail Account</li>
+        </ul>
+    </li>
+    <li>SMTP</li>
+    <li>Sending Email
+        <ul>
+            <li>Connecting to an SMTP Server</li>
+            <li>Sending the SMTP “Hello” Message</li>
+            <li>Starting TLS Encryption</li>
+            <li>Logging In to the SMTP Server</li>
+            <li>Sending an Email</li>
+            <li>Disconnecting from the SMTP Server</li>
+        </ul>
+    </li>
+    <li>IMAP</li>
+    <li>Retrieving and Deleting Emails with IMAP
+        <ul>
+            <li>Connecting to an IMAP Server</li>
+            <li>Logging In to the IMAP Server</li>
+            <li>Searching for Email</li>
+            <li>Selecting a Folder</li>
+            <li>Performing the Search</li>
+            <li>Size Limits</li>
+            <li>Fetching an Email and Marking It as Read</li>
+            <li>Getting Email Addresses from a Raw Message</li>
+            <li>Getting the Body from a Raw Message</li>
+            <li>Deleting Emails</li>
+            <li>Disconnecting from the IMAP Server</li>
+        </ul>
+    </li>
+    <li>Project: Sending Member Dues Reminder Emails
+        <ul>
+            <li>
+                Step 1: Open the Excel File
+                <br>Step 2: Find All Unpaid Members
+                <br>Step 3: Send Customized Email Reminders
+            </li>
+        </ul>
+    </li>
+    <li>Sending Text Messages with SMS Email Gateways</li>
+    <li>Sending Text Messages with Twilio
+        <ul>
+            <li>Signing Up for a Twilio Account</li>
+            <li>Sending Text Messages</li>
+        </ul>
+    </li>
+    <li>Project: “Just Text Me” Module</li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Projects
+        <ul>
+            <li>Random Chore Assignment Emailer</li>
+            <li>Umbrella Reminder</li>
+            <li>Auto Unsubscriber</li>
+            <li>Controlling Your Computer Through Email</li>
+        </ul>
+    </li>
+</ol>
+<h1>Chapter 18<br>Sending Email and Text Messages</h1>
+<p>This chapter features the EZGmail module, a simple way to send and read emails from Gmail accounts, as well as a Python module for using the standard SMTP and IMAP email protocols.</p>
+
+<h2>Sending and Receiving Email with the Gmail API</h2>
+<ul>
+    <li>EZGmail module:</li>
+    <li><a href="https://github.com/asweigart/ezgmail/" target="_blank">Full details on EZGmail</a></li>
+    <li>----------</li>
+    <li>Gmail API:</li>
+    <li><a href="https://developers.google.com/gmail/api/v1/reference/" target="_blank">Official Gmail API documentation</a></li>
+    <li>----------</li>
+    <li>Install EZGmail:</li>
+    <li>pip install ezgmail</li>
+    <li>pip install --upgrade ezgmail</li>
+</ul>
+
+<h3>Enabling the Gmail API</h3>
+<a href="https://github.com/asweigart/ezgmail" target="_blank">AlSweigart EZgmail</a>
+<ol>
+    <li>Sign up for a Gmail email account</li>
+    <li>Go to https://developers.google.com/gmail/api/quickstart/python/</li>
+    <li>Click the Enable the Gmail API button on that page</li>
+    <li>Fill out the form that appears</li>
+</ol>
+<p>
+    Then, in the interactive shell, enter the following code:
+    <ul>
+        <li>import ezgmail, os</li>
+        <li>os.chdir(r'C:\path\to\credentials_json_file')</li>
+        <li>ezgmail.init()</li>
+    </ul>
+</p>
+<p>With credentials.json and token.json, your Python scripts can send and read emails from your Gmail account without requiring you to include your Gmail password in your source code.</p>
+
+<h3>Sending Mail from a Gmail Account</h3>
+
+<p>Once you have a token.json file, the EZGmail module should be able to send email with a single function call:</p>
+<script src="https://gist.github.com/TeddyCatTX/2f46582317db9cc8f2bb4e13f1046af4.js"></script>
+
+<p>If you want to attach files to your email, you can provide an extra list argument to the send() function:</p>
+<script src="https://gist.github.com/TeddyCatTX/b267e3532ed2ff8b54deb3ddef94e0b3.js"></script>
+
+<p>You can also supply the optional keyword arguments cc and bcc to send carbon copies and blind carbon copies:</p>
+<script src="https://gist.github.com/TeddyCatTX/8c18a4ae2337036d644db197e4e3633d.js"></script>
+
+<p>If you need to remember which Gmail address the token.json file is configured for:</p>
+<script src="https://gist.github.com/TeddyCatTX/2078fe66079b027115b0eb3dd3200800.js"></script>
+
+<h3>Reading Mail from a Gmail Account</h3>
+
+<p>The unread() function returns a list of GmailThread objects for all unread emails, which can then be passed to ezgmail.summary() to print a summary of the conversation threads in that list:</p>
+<script src="https://gist.github.com/TeddyCatTX/e2a317b03ab22ad37427a600ded81188.js"></script>
+
+<p>The messages attribute contains a list of the GmailMessage objects that make up the thread, and these have subject, body, timestamp, sender, and recipient attributes that describe the email:</p>
+<script src="https://gist.github.com/TeddyCatTX/cfb4a6fdbf90cfba1e2a823c2bd3d4ab.js"></script>
+
+<p>Similar to the ezgmail.unread() function, the ezgmail.recent() function will return the 25 most recent threads in your Gmail account. You can pass an optional maxResults keyword argument to change this limit:</p>
+<script src="https://gist.github.com/TeddyCatTX/d6923cd7694508ae1923e96bde7eafb2.js"></script>
+
+<h3>Searching Mail from a Gmail Account</h3>
+<p>In addition to using ezgmail.unread() and ezgmail.recent(), you can search for specific emails, the same way you would if you entered queries into the https://gmail.com/ search box, by calling ezgmail.search():</p>
+<script src="https://gist.github.com/TeddyCatTX/de997cf253f76d6cc79816e2c3b66517.js"></script>
+<p>You can also pass any of the special search operators that you can enter into the search box to the search() function, such as the following:</p>
+<ul>
+    <li>'label:UNREAD' For unread emails</li>
+    <li>'from:al@inventwithpython.com' For emails from al@inventwithpython.com</li>
+    <li>'subject:hello' For emails with “hello” in the subject</li>
+    <li>'has:attachment' For emails with file attachments</li>
+</ul>
+
+<p>You can view a full list of search operators at <a href="https://support.google.com/mail/answer/7190?hl=en/" target="_blank">https://support.google.com/mail/answer/7190?hl=en/</a>.</p>
+
+<h3>Downloading Attachments from a Gmail Account</h3>
+<p>By default, EZGmail saves attachments to the current working directory, but you can pass an additional downloadFolder keyword argument to downloadAttachment() and downloadAllAttachments() as well. For example:</p>
+<script src="https://gist.github.com/TeddyCatTX/7ae2c318a4ac1bc211152019e517d67a.js"></script>
+
+<p>EZGmail contains additional features, find the full documentation at <a href="https://github.com/asweigart/ezgmail/" target="_blank">https://github.com/asweigart/ezgmail/</a>.</p>
+
+<h2>SMTP</h2>
+<p>Simple Mail Transfer Protocol (SMTP) is the protocol used for sending email.</p>
+
+<h2>Sending Email</h2>
+<p>You call functions to perform each major step of SMTP, as shown in the following interactive shell example.</p>
+<script src="https://gist.github.com/TeddyCatTX/7b5e9c3ce2073135ee284039e4385136.js"></script>
+<p>In the following sections, we’ll go through each step, replacing the placeholders with your information to connect and log in to an SMTP server, send an email, and disconnect from the server.</p>
+<h3>Connecting to an SMTP Server</h3>
+<ul>
+    <li><a href="https://www.whatismyisp.com/" target="_blank">Find your Internet Service Provider (ISP)</a></li>
+    <li><a href="https://www.google.com/search?q=charter+smtp+settings&oq=Charter+smtp&aqs=chrome.0.0i512j69i57j0i512l2j0i22i30l3j0i22i30i625.4783j0j7&sourceid=chrome&ie=UTF-8" target="_blank">Charter smtp settings</a></li>
+    <li><a href="https://support.google.com/a/answer/176600?hl=en#gmail-smpt-option" target="_blank">Send email with the Gmail SMTP server</a></li>
+    <li>----------</li>
+    <li>For Gmail:</li>
+    <li>Domain name - smtp.gmail.com</li>
+    <li>Port information - Port 25, 465, or 587</li>
+</ul>
+<p>The following call creates an SMTP object for connecting to an imaginary email server:</p>
+<script src="https://gist.github.com/TeddyCatTX/3d6b7ded7772c63b79ff02e53a80c57d.js"></script>
+
+<h3>Sending the SMTP “Hello” Message</h3>
+<p>This greeting is the first step in SMTP and is important for establishing a connection to the server.</p>
+<script src="https://gist.github.com/TeddyCatTX/15c95f2c23d065ff905dade3684ee74e.js"></script>
+<p>If the first item in the returned tuple is the integer 250 (the code for “success” in SMTP), then the greeting succeeded.</p>
+
+<h3>Starting TLS Encryption</h3>
+<p>Here’s an example of the starttls() method call:</p>
+<script src="https://gist.github.com/TeddyCatTX/0b5978399a4d93ce74706f64991fed46.js"></script>
+<p>The starttls() method puts your SMTP connection in TLS mode. The 220 in the return value tells you that the server is ready.</p>
+
+<h3>Logging In to the SMTP Server</h3>
+<p>Once your encrypted connection to the SMTP server is set up, you can log in with your username (usually your email address) and email password by calling the login() method.</p>
+<script src="https://gist.github.com/TeddyCatTX/241463dd3eba299889f1c73d9518d78b.js"></script>
+
+<h3>Sending an Email</h3>
+<p>Once you are logged in to your email provider’s SMTP server, you can call the sendmail() method to actually send the email. The sendmail() method call looks like this:</p>
+<script src="https://gist.github.com/TeddyCatTX/3b22eb8eb0fa294c23c5bfcca6696389.js"></script>
+
+<h3>Disconnecting from the SMTP Server</h3>
+<p>Be sure to call the quit() method when you are done sending emails. This will disconnect your program from the SMTP server.</p>
+<script src="https://gist.github.com/TeddyCatTX/4947bf03395cde4dfbda0d741da8d75f.js"></script>
+<p>The 221 in the return value means the session is ending.</p>
+
+<h3>Summary</h3>
+<ul>
+    <li><a href="https://www.reddit.com/r/learnprogramming/comments/zkoqva/trying_to_send_a_email_with_python_but_cant_seem/" target="_blank">Trying to send an email with Python but can't seem to figure it out.</a></li>
+    <li><a href="https://support.google.com/accounts/answer/185833?hl=en" target="_blank">Sign in with App Passwords</a></li>
+    <li><a href="https://kinsta.com/blog/gmail-smtp-server/" target="_blank">How to Use the Gmail SMTP Server to Send Emails for Free</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/bc5f0ed868c703f572a27633a4d3c610.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/2d728f28f1f3b49964cf25ae30b2bea3.js"></script>
+<h2>IMAP</h2>
+<ul>
+    <li>Internet Message Access Protocol (IMAP)</li>
+    <li>IMAP specifies how to communicate with an email provider’s server to retrieve emails sent to your email address.</li>
+    <li>The imaplib module (Working)</li>
+    <li>The imapclient module (easier to use but Not Working for me)</li>
+    <li><a href="https://imapclient.readthedocs.io/" target="_blank">Full documentation: IMAP</a></li>
+    <li>The pyzmail module</li>
+    <li><a href="https://www.magiksys.net/pyzmail/" target="_blank">Complete documentation: PyzMail</a></li>
+</ul>
+<p>Install imapclient and pyzmail:</p>
+<script src="https://gist.github.com/TeddyCatTX/b592a456531ec52d0e410ce689cf5f6b.js"></script>
+<p>Alternatively, you can also install imapclient and pyzmail from source by cloning the git repositories and running the setup.py script. To do this, you will need to have Git installed on your system. You can then use the following commands:</p>
+<script src="https://gist.github.com/TeddyCatTX/104f8d7525bf73964e417aa7755ad6d0.js"></script>
+<a href="https://stackoverflow.com/questions/68775869/message-support-for-password-authentication-was-removed-please-use-a-personal" target="_blank">Create Personal Access Token on GitHub</a>
+<br><a href="https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls" target="_blank">Cloning with HTTPS URLs</a>
+<br><a href="https://stackoverflow.com/questions/25947059/git-clone-repository-not-found" target="_blank">Git Clone - Repository not found</a>
+<br><a href="https://stackoverflow.com/questions/68775869/message-support-for-password-authentication-was-removed-please-use-a-personal" target="_blank">Message "Support for password authentication was removed. Please use a personal access token instead."</a>
+<br><a href="https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls" target="_blank">About remote repositories</a>
+
+<p style="color:red"><b>* Solution: pip install pyzmail36 * </b><a href="https://www.reddit.com/r/learnpython/comments/kqigba/will_pyzmail_be_deprecated_pip_install_not/" target="_blank">pyzmail</a></p>
+<script src="https://gist.github.com/TeddyCatTX/9d24ee72eb254cf9c1e827ed9d38086e.js"></script>
+
+<h2>Retrieving and Deleting Emails with IMAP</h2>
+<p>Here’s a full example of logging in to an IMAP server, searching for emails, fetching them, and then extracting the text of the email messages from them.</p>
+<script src="https://gist.github.com/TeddyCatTX/9e6f527d067248c6d5bfe81731a52b1d.js"></script>
+
+<h3>Connecting to an IMAP Server</h3>
+<ul>
+    <li>SMTP object - connect to an SMTP server and send email</li>
+    <li>IMAPClient object - connect to an IMAP server and receive email</li>
+    <li>Call the imapclient.IMAPClient() function to create an IMAPClient object</li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/f9a8879546140c6a4baed4de101bd23a.js"></script>
+
+<h3>Logging In to the IMAP Server</h3>
+<p>Once you have an IMAPClient object, call its login() method, passing in the username (this is usually your email address) and password as strings.</p>
+<script src="https://gist.github.com/TeddyCatTX/be0b616ab71f8f1555ff7247ae0fa748.js"></script>
+
+<h3>Searching for Email</h3>
+<p>Once you’re logged on, actually retrieving an email that you’re interested in is a two-step process. First, you must select a folder you want to search through. Then, you must call the IMAPClient object’s search() method, passing in a string of IMAP search keywords.</p>
+
+<h3>Selecting a Folder</h3>
+<p>Get a list of folders by calling the IMAPClient object’s list_folders() method</p>
+<script src="https://gist.github.com/TeddyCatTX/8144f5f40ae8bea0d16608b9e3dbe782.js"></script>
+<p>The three values in each of the tuples—for example, (('\\HasNoChildren',), '/', 'INBOX')—are as follows:</p>
+<ul>
+    <li>A tuple of the folder’s flags.</li>
+    <li>The delimiter used in the name string to separate parent folders and subfolders.</li>
+    <li>The full name of the folder.</li>
+</ul>
+
+<p>To select a folder to search through, pass the folder’s name as a string into the IMAPClient object’s select_folder() method.</p>
+<script src="https://gist.github.com/TeddyCatTX/fec835ef40c97eff7bfb19a5eb08622c.js"></script>
+
+<h3>Performing the Search</h3>
+<p>With a folder selected, you can now search for emails with the IMAPClient object’s search() method. Here are some example search() method calls along with their meanings:</p>
+<ul>
+    <li>imapObj.search(['ALL']) </li>
+    <li>Returns every message in the currently selected folder.</li>
+    <li>imapObj.search(['ON 05-Jul-2019']) </li>
+    <li>Returns every message sent on July 5, 2019.</li>
+    <li>imapObj.search(['SINCE 01-Jan-2019', 'BEFORE 01-Feb-2019', 'UNSEEN']) </li>
+    <li>Returns every message sent in January 2019 that is unread. (Note that this means on and after January 1 and up to but not including February 1.)</li>
+    <li>imapObj.search(['SINCE 01-Jan-2019', 'FROM alice@example.com']) </li>
+    <li>Returns every message from alice@example.com sent since the start of 2019.</li>
+    <li>imapObj.search(['SINCE 01-Jan-2019', 'NOT FROM alice@example.com']) </li>
+    <li>Returns every message sent from everyone except alice@example.com since the start of 2019.</li>
+    <li>imapObj.search(['OR FROM alice@example.com FROM bob@example.com']) </li>
+    <li>Returns every message ever sent from alice@example.com or bob@example.com.</li>
+    <li>imapObj.search(['FROM alice@example.com', 'FROM bob@example.com']) </li>
+    <li>Trick example! This search never returns any messages, because messages must match all search keywords. Since there can be only one “from” address, it is impossible for a message to be from both alice@example.com and bob@example.com.</li>
+</ul>
+<p>The search() method doesn’t return the emails themselves but rather unique IDs (UIDs) for the emails, as integer values. You can then pass these UIDs to the fetch() method to obtain the email content.<br>Continue the interactive shell example by entering the following:</p>
+<script src="https://gist.github.com/TeddyCatTX/3090d484cf92f7d5c79c516e01dbbc5d.js"></script>
+<p>Here, the list of message IDs (for messages received July 5 onward) returned by search() is stored in UIDs.</p>
+
+<h3>Size Limits</h3>
+<p>You can change this limit from 10,000 bytes to 10,000,000 bytes by running this code:</p>
+<script src="https://gist.github.com/TeddyCatTX/246ee2061604732fc68f0d8e3cfb25a0.js"></script>
+
+<h3>Fetching an Email and Marking It as Read</h3>
+<p>Once you have a list of UIDs, you can call the IMAPClient object’s fetch() method to get the actual email content.</p>
+<script src="https://gist.github.com/TeddyCatTX/6709c9782548cd38f4283743c69703ed.js"></script>
+<p>If the selected folder is already in read-only mode, you can reselect the current folder with another call to select_folder(), this time with the readonly=False keyword argument:</p>
+<script src="https://gist.github.com/TeddyCatTX/bd1eaf1a4b7f23c3d8cbf45ee49975ed.js"></script>
+
+<h3>Getting Email Addresses from a Raw Message</h3>
+<p>The pyzmail module parses these raw messages and returns them as PyzMessage objects, which make the subject, body, “To” field, “From” field, and other sections of the email easily accessible to your Python code.</p>
+<script src="https://gist.github.com/TeddyCatTX/dcaaf0f377ee5c6c8618ca9a803fd2db.js"></script>
+<p>First, import pyzmail. Then, to create a PyzMessage object of an email, call the pyzmail.PyzMessage.factory() function and pass it the 'BODY[]' section of the raw message. </p>
+<script src="https://gist.github.com/TeddyCatTX/e33d5b34bdd5904a1ff65b6511c4771f.js"></script>
+<p>Each tuple contains two strings: the first is the name associated with the email address, and the second is the email address itself.</p>
+
+<h3>Getting the Body from a Raw Message</h3>
+<p>If an email is only plaintext, its PyzMessage object will have its html_part attributes set to None. Likewise, if an email is only HTML, its PyzMessage object will have its text_part attribute set to None.</p>
+<script src="https://gist.github.com/TeddyCatTX/5a5377dbeea7c703c3951cefb6f46d15.js"></script>
+<ul>
+    <li>➊ ➌ The email we’re working with has both plaintext and HTML content, so the PyzMessage object stored in message has text_part and html_part attributes not equal to None.</li>
+    <li>➋ Calling get_payload() on the message’s text_part and then calling decode() on the bytes value returns a string of the text version of the email.</li>
+    <li>➍ Using get_payload() and decode() with the message’s html_part returns a string of the HTML version of the email.</li>
+</ul>
+
+<h3>Deleting Emails</h3>
+<script src="https://gist.github.com/TeddyCatTX/ce45b02f3462a68f6b088a781f694634.js"></script>
+<ul>
+    <li>➊ Here we select the inbox by calling select_folder() on the IMAPClient object and passing 'INBOX' as the first argument; we also pass the keyword argument readonly=False so that we can delete emails.</li>
+    <li>➋ We search the inbox for messages received on a specific date and store the returned message IDs in UIDs.</li>
+    <li>➌ Calling delete_message() and passing it UIDs returns a dictionary; each key-value pair is a message ID and a tuple of the message’s flags, which should now include \Deleted.</li>
+</ul>
+
+<h3>Disconnecting from the IMAP Server</h3>
+<p>When your program has finished retrieving or deleting emails, simply call the IMAPClient’s logout() method to disconnect from the IMAP server.</p>
+<script src="https://gist.github.com/TeddyCatTX/c36ed8913b3c790c7d690f951de8ce0f.js"></script>
+<p>If your program runs for several minutes or more, the IMAP server may time out, or automatically disconnect. In this case, the next method call your program makes on the IMAPClient object should raise an exception like the following:</p>
+<script src="https://gist.github.com/TeddyCatTX/6f9260032390ad59376bc383e631be5c.js"></script>
+<p>In this event, your program will have to call imapclient.IMAPClient() to connect again.</p>
+
+<p style="color:red"><b>* The above codes in one piece: *</b></p>
+<script src="https://gist.github.com/TeddyCatTX/10aa3dfdc8228668af3cccfb98fd3382.js"></script>
+
+<p style="color:red"><b>imapclient not reading an email properly: <a href="https://stackoverflow.com/questions/70188636/imapclient-not-reading-an-email-properly" target="_blank">Solution</a></b></p>
+<script src="https://gist.github.com/TeddyCatTX/4c6a8742ee8538b9b93edd62b6f8dba1.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/be5e0df16b12e36b8c190459a9bf277c.js"></script>
+<h2>Project: Sending Member Dues Reminder Emails</h2>
+<h3>
+    Step 1: Open the Excel File
+    <br>Step 2: Find All Unpaid Members
+    <br>Step 3: Send Customized Email Reminders
+</h3>
+<script src="https://gist.github.com/TeddyCatTX/e30ffce03e00580de93f39c69b9b2325.js"></script>
+
+<h2>Sending Text Messages with SMS Email Gateways</h2>
+<ul>
+    <li>Search “sms email gateway provider name”</li>
+    <li> > to find the SMS email gateway for a cell phone provider</li>
+    <li>Search “find cell phone provider for number”</li>
+    <li> > if you don’t know the recipient’s cell phone provider</li>
+    <li>Google Fi</li>
+    <li> > number@msg.fi.google.com</li>
+</ul>
+<p>Sending texts via an SMS gateway is ideal when you need to send the occasional, nonurgent message. If you need more reliable service, use a non-email SMS gateway service, as described next.</p>
+
+<h2>Sending Text Messages with Twilio</h2>
+<p>In this section, you’ll learn how to sign up for the free Twilio service and use its Python module to send text messages. </p>
+<p>Twilio isn’t the only SMS gateway service. If you prefer not to use Twilio, you can find alternative services by searching online for “free sms” “gateway,” “python sms api,” or even “twilio alternatives.”</p>
+
+<h3>Signing Up for a Twilio Account</h3>
+<ul>
+    <li>https://www.twilio.com/</li>
+    <li>Twilio provides your trial account with a phone number to use as the sender of text messages. You will need two more pieces of information: your account SID and the auth (authentication) token.</li>
+</ul>
+<h3>Sending Text Messages</h3>
+<script src="https://gist.github.com/TeddyCatTX/c6e03095f9066876160cf76c20cd508f.js"></script>
+<ul>
+    <li>➊ Because of the way the twilio module is set up, you need to import it using from twilio.rest import Client, not just import twilio.</li>
+    <li>➋ Store your account SID in accountSID and your auth token in authToken and then call Client() and pass it accountSID and authToken. The call to Client() returns a Client object.</li>
+    <li>➌ This object has a messages attribute, which in turn has a create() method you can use to send text messages. This is the method that will instruct Twilio’s servers to send your text message. After storing your Twilio number and cell phone number in myTwilioNumber and myCellPhone, respectively, call create() and pass it keyword arguments specifying the body of the text message, the sender’s number (myTwilioNumber), and the recipient’s number (myCellPhone).</li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/e622cb0e738d199efa6e0fa5bc91b2fc.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/10c062a23ac6f50734eeda473cb38974.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/28b2948ab230726dc2257e26625a1600.js"></script>
+<ul><li>➊ Entering message.sid shows you this message’s long SID. By passing this SID to the Twilio client’s get() method.</li></ul>
+<script src="https://gist.github.com/TeddyCatTX/8df9ed92d9f5f23280811b290c1b4fc0.js"></script>
+
+<h2>Project: “Just Text Me” Module</h2>
+<p>As a simple example, here’s a small Python program with a textmyself() function that sends a message passed to it as a string argument.</p>
+<script src="https://gist.github.com/TeddyCatTX/f17859ebd7d7c457e1c6ab7c70f2dbe8.js"></script>
+<p>If you want to make the textmyself() function available to your other programs, simply place the textMyself.py file in the same folder as your Python script. Whenever you want one of your programs to text you, just add the following:</p>
+<script src="https://gist.github.com/TeddyCatTX/f766f1bb5d64afdae7286293a27003eb.js"></script>
+
+<h2>Summary</h2>
+
+<h2>Practice Questions</h2>
+<ol>
+    <li>What is the protocol for sending email? For checking and receiving email?
+        <br> - SMTP and IMAP, respectively
+    </li><br>
+    <li>What four smtplib functions/methods must you call to log in to an SMTP server?
+        <br> - smtplib.SMTP(), smtpObj.ehlo(), smptObj.starttls(), and smtpObj.login()
+    </li><br>
+    <li>What two imapclient functions/methods must you call to log in to an IMAP server?
+        <br> - imapclient.IMAPClient() and imapObj.login()
+    </li><br>
+    <li>What kind of argument do you pass to imapObj.search()?
+        <br> - A list of strings of IMAP keywords, such as 'BEFORE <date>', 'FROM <string>', or 'SEEN'
+    </li><br>
+    <li>What do you do if your code gets an error message that says got more than 10000 bytes?
+        <br> - Assign the variable imaplib._MAXLINE a large integer value, such as 10000000.
+    </li><br>
+    <li>The imapclient module handles connecting to an IMAP server and finding emails. What is one module that handles reading the emails that imapclient collects?
+        <br> - The pyzmail module reads downloaded emails.
+    </li><br>
+    <li>When using the Gmail API, what are the credentials.json and token.json files?
+        <br> - The credentials.json and token.json files tell the EZGmail module which Google account to use when accessing Gmail.
+    </li><br>
+    <li>In the Gmail API, what’s the difference between “thread” and “message” objects?
+        <br> - A message represents a single email, while a back-and-forth conversation involving multiple emails is a thread.
+    </li><br>
+    <li>Using ezgmail.search(), how can you find emails that have file attachments?
+        <br> - Include the 'has:attachment' text in the string you pass to search().
+    </li><br>
+    <li>What three pieces of information do you need from Twilio before you can send text messages?
+        <br> - You will need the Twilio account SID number, the authentication token number, and your Twilio phone number.
+    </li><br>
+</ol>
+
+<h2>Practice Projects</h2>
+
+<h3>Random Chore Assignment Emailer</h3>
+
+<p>Write a program that takes a list of people’s email addresses and a list of chores that need to be done and randomly assigns chores to people. Email each person their assigned chores.</p>
+<script src="https://gist.github.com/TeddyCatTX/83dd39afb48c3ee7b81aa343746b88f0.js"></script>
+
+<p>If you’re feeling ambitious, keep a record of each person’s previously assigned chores so that you can make sure the program avoids assigning anyone the same chore they did last time.</p>
+<a href="https://josealermaiii.github.io/python-tutorials/_modules/AutomateTheBoringStuff/Ch16/Projects/P1_assignChores.html" target="_blank">https://josealermaiii.github.io/</a>
+<br><br>
+<script src="https://gist.github.com/TeddyCatTX/c6aed4b3a6bba80e0ed0b74ae252feb8.js"></script>
+
+<p> For another possible feature, schedule the program to run once a week automatically.</p>
+<a href="https://github.com/thomaskellough/Automate-The-Boring-Stuff/blob/master/Practice-Projects/Ch%2016%20-%20Random%20Chore%20Assignment%20Emailer.py" target="_blank">https://github.com/thomaskellough/</a>
+<br><br>
+<script src="https://gist.github.com/TeddyCatTX/49ef66d2923e6bdb59e16b97d0797acf.js"></script>
+
+<h3>Umbrella Reminder</h3>
+<a href="https://github.com/IanFindlay/automate-the-boring-stuff-projects" target="_blank">IanFindlay</a><br>
+<a href="https://github.com/IanFindlay/automate-the-boring-stuff-projects/blob/master/Chapter%2016/umbrella-reminder.py" target="_blank">IanFindlay automate-the-boring-stuff-projects</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/c2a35020bc97ae0c7bf064ef8763de99.js"></script>
+
+<h3>Auto Unsubscriber</h3>
+<a href="https://github.com/kudeh/automate-the-boring-stuff-projects/blob/master/auto-unsubscriber/unsubscriber.py" target="_blank">kudeh/automate-the-boring-stuff-projects</a>
+<p>Here is an example of a Python program that scans through an email account, finds all the unsubscribe links in all the emails, and automatically opens them in a browser:</p>
+<script src="https://gist.github.com/TeddyCatTX/9638e6a190b4a55359a4dde5a90e3257.js"></script>
+<p>This code will connect to an email server using IMAP, select the inbox folder, search for all emails with the word "unsubscribe" in the subject, and then iterate through the list of emails. For each email, it will check if the email is in HTML format and, if it is, it will use Beautiful Soup to find all links with the word "unsubscribe" in them. Finally, it will iterate through the list of links and open each one in a browser.</p>
+
+<h3>Controlling Your Computer Through Email</h3>
+
+<p>Write a program that checks an email account every 15 minutes for any instructions you email it and executes those instructions automatically.</p>
+<p>This code checks my Gmail account every five minutes for new emails. Depending on the subject of the email, it will either send me news updates or weather updates.</p>
+<script src="https://gist.github.com/TeddyCatTX/b7e66087508dc05ab0bb41a47e123288.js"></script>
+
+<a href="https://github.com/kudeh/automate-the-boring-stuff-projects/blob/master/bittorrent-downloader/download_torrent.py" target="_blank">kudeh/automate-the-boring-stuff-projects</a>
+<br><br><script src="https://gist.github.com/TeddyCatTX/26ebbf1f5f213ce9515e20132ee98cab.js"></script>
+
+<h1>Extra</h1>
+<p>Web scraping & Print text</p>
+<script src="https://gist.github.com/TeddyCatTX/19b83d37faae47bca22f60132658fae7.js"></script>
+
+<h1>chapter 20</h1>
+<a href="https://github.com/kudeh/automate-the-boring-stuff-projects" target="_blank">kudeh</a>
+<br><a href="https://github.com/kudeh/automate-the-boring-stuff-projects/commit/2b24d1c145fbd4bf3a502b0d735ac0772195c227" target="_blank">make_busy</a>
+<br><br><script src="https://gist.github.com/TeddyCatTX/a44592f1edb7153ed38da191d472fc42.js"></script>

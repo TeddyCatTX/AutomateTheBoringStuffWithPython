@@ -1,0 +1,253 @@
+<link rel="stylesheet" href="styles.css">
+
+<h2>Chapter 7 – Pattern Matching with Regular Expressions</h2>
+<ul>
+    <li><a href="https://youtu.be/rhzKDrUiJVk" target="_blank">Learn Regular Expressions In 20 Minutes</a></li>
+    <li><a href="https://regex101.com/" target="_blank">regex101.com</a></li>
+    <li><a href="https://regexr.com/" target="_blank">regexr.com</a></li>
+    <li><a href="https://pythex.org/" target="_blank">pythex.org</a></li>
+
+</ul>
+
+<h3>Finding Patterns of Text Without Regular Expressions</h3>
+<h3>Finding Patterns of Text with Regular Expressions</h3>
+
+<h4>Creating Regex Objects</h4>
+<h4>Matching Regex Objects</h4>
+<h4>Review of Regular Expression Matching</h4>
+<ul>
+    <li>
+        <a href="https://pythex.org/" target="_blank">Web-based regular expression testers</a>
+    </li>
+</ul>
+<h3>More Pattern Matching with Regular Expressions</h3>
+<h4>Grouping with Parentheses</h4>
+<ul>
+    <li>In regular expressions, the following characters have special meanings:</li>
+    <li>.  ^  $  *  +  ?  {  }  [  ]  \  |  (  )</li>
+    <li>If you want to detect these characters as part of your text pattern, you need to escape them with a backslash:</li>
+    <li>\.  \^  \$  \*  \+  \?  \{  \}  \[  \]  \\  \|  \(  \)</li>
+</ul>
+
+<h4>Matching Multiple Groups with the Pipe</h4>
+<ul>
+    <li>The | character is called a pipe. </li>
+</ul>
+
+<h4>Optional Matching with the Question Mark</h4>
+<ul>
+    <li>batRegex = re.compile(r'Bat(wo)?man')</li>
+</ul>
+
+<h4>Matching Zero or More with the Star</h4>
+<ul>
+    <li>batRegex = re.compile(r'Bat(wo)*man')</li>
+</ul>
+
+<h4>Matching One or More with the Plus</h4>
+<ul>
+    <li>batRegex = re.compile(r'Bat(wo)+man')</li>
+</ul>
+
+<h4>Matching Specific Repetitions with Braces</h4>
+<ul>
+    <li>haRegex = re.compile(r'(Ha){3}')</li>
+</ul>
+    
+<h3>Greedy and Non-greedy Matching</h3>
+<ul>
+    <li>greedyHaRegex = re.compile(r'(Ha){3,5}')</li>
+    <li>nongreedyHaRegex = re.compile(r'(Ha){3,5}?')</li>
+</ul>
+
+<h3>The findall() Method</h3>
+<p># has no groups</p>
+<ul>
+    <li>phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')</li>
+    <li>findall() returns a list of string matches</li>
+    <li>['415-555-9999', '212-555-0000']</li>
+</ul>
+<p># has groups</p>
+<ul>
+    <li>phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)')</li>
+    <li>findall() returns a list of tuples of strings (one string for each group)</li>
+    <li>[('415', '555', '9999'), ('212', '555', '0000')]</li>
+</ul>
+
+<h3>Character Classes</h3>
+<ul>
+    <li>( \d ) Any numeric digit from 0 to 9.</li>
+    <li>( \D ) Any character that is not a numeric digit from 0 to 9.</li>
+    <li>( \w ) Any letter, numeric digit, or the underscore character. (Think of this as matching “word” characters.)</li>
+    <li>( \W ) Any character that is not a letter, numeric digit, or the underscore character.</li>
+    <li>( \s ) Any space, tab, or newline character. (Think of this as matching “space” characters</li>
+    <li>( \S ) Any character that is not a space, tab, or newline.</li>
+</ul>
+<p>xmasRegex = re.compile(r'\d+\s\w+')</p>
+<ul>
+    <li>has one or more numeric digits (\d+)</li>
+    <li>a whitespace character (\s)</li>
+    <li>one or more letter/digit/underscore characters (\w+)</li>
+</ul>
+
+<h3>Making Your Own Character Classes</h3>
+<ul>
+    <li>vowelRegex = re.compile(r'[aeiouAEIOU]')</li>
+    <li>vowelRegex.findall('RoboCop eats baby food. BABY FOOD.')</li>
+    <li>['o', 'o', 'o', 'e', 'a', 'a', 'o', 'o', 'A', 'O', 'O']</li>
+    <li>----------</li>
+    <li>(^)</li>
+    <li>consonantRegex = re.compile(r'[^aeiouAEIOU]')</li>
+    <li>consonantRegex.findall('RoboCop eats baby food. BABY FOOD.')</li>
+    <li>['R', 'b', 'C', 'p', ' ', 't', 's', ' ', 'b', 'b', 'y', ' ', 'f', 'd', '.', ' ', 'B', 'B', 'Y', ' ', 'F', 'D', '.']</li>
+</ul>
+
+<h3>The Caret and Dollar Sign Characters</h3>
+<ul>
+    <li>( ^ ) at the start of a regex to indicate that a match must occur at the beginning of the searched text</li>
+    <li>beginsWithHello = re.compile(r'^Hello')</li>
+    <li>( $ ) at the end of the regex to indicate the string must end with this regex pattern</li>
+    <li>endsWithNumber = re.compile(r'\d$')</li>
+</ul>
+
+<h3>The Wildcard Character</h3>
+<ul>
+    <li>The . (or dot) character in a regular expression is called a wildcard</li>
+    <li>----------</li>
+    <li>atRegex = re.compile(r'.at')</li>
+    <li>atRegex.findall('The cat in the hat sat on the flat mat.')</li>
+    <li>['cat', 'hat', 'sat', 'lat', 'mat']</li>
+</ul>
+
+<h4>Matching Everything with Dot-Star</h4>
+<ul>
+    <li>dot character means “any single character except the newline</li>
+    <li>the star character means “zero or more of the preceding character</li>
+    <li>----------</li>
+    <li>nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')</li>
+    <li>mo = nameRegex.search('First Name: Al Last Name: Sweigart')</li>
+    <li>mo.group(1)</li>
+    <li>'Al'</li>
+    <li>mo.group(2)</li>
+    <li>'Sweigart'</li>
+    <li>----------</li>
+    <li>nongreedyRegex = re.compile(r'<.*?>')</li>
+    <li>mo = nongreedyRegex.search('<To serve man> for dinner.>')</li>
+    <li>---------</li>
+    <li>greedyRegex = re.compile(r'<.*>')</li>
+    <li>mo = greedyRegex.search('<To serve man> for dinner.>')</li>
+</ul>
+
+<h4>Matching Newlines with the Dot Character</h4>
+<ul>
+    <li>The dot-star will match everything except a newline.</li>
+    <li>noNewlineRegex = re.compile('.*')</li>
+    <li>newlineRegex = re.compile('.*', re.DOTALL)</li>
+</ul>
+
+<h3>Review of Regex Symbols</h3>
+<pre>
+The ? matches zero or one of the preceding group.
+
+The * matches zero or more of the preceding group.
+
+The + matches one or more of the preceding group.
+
+The {n} matches exactly n of the preceding group.
+
+The {n,} matches n or more of the preceding group.
+
+The {,m} matches 0 to m of the preceding group.
+
+The {n,m} matches at least n and at most m of the preceding group.
+
+{n,m}? or *? or +? performs a non-greedy match of the preceding group.
+
+^spam means the string must begin with spam.
+
+spam$ means the string must end with spam.
+
+The . matches any character, except newline characters.
+
+\d, \w, and \s match a digit, word, or space character, respectively.
+
+\D, \W, and \S match anything except a digit, word, or space character, respectively.
+
+[abc] matches any character between the brackets (such as a, b, or c).
+
+[^abc] matches any character that isn’t between the brackets.
+</pre>
+
+<h3>Case-Insensitive Matching</h3>
+
+<h3>Substituting Strings with the sub() Method</h3>
+<ul>
+    <li>namesRegex = re.compile(r'Agent \w+')</li>
+    <li>namesRegex.sub('CENSORED', 'Agent Alice gave the secret documents to Agent Bob.')</li>
+    <li>'CENSORED gave the secret documents to CENSORED.'</li>
+    <li>----------</li>
+    <li>agentNamesRegex = re.compile(r'Agent (\w)\w*')</li>
+    <li>agentNamesRegex.sub(r'\1****', 'Agent Alice told Agent Carol that Agent Eve knew Agent Bob was a double agent.')</li>
+    <li>A**** told C**** that E**** knew B**** was a double agent.'</li>
+</ul>
+
+<h3>Managing Complex Regexes</h3>
+<pre>
+    phoneRegex = re.compile(r'''(
+    (\d{3}|\(\d{3}\))?            # area code
+    (\s|-|\.)?                    # separator
+    \d{3}                         # first 3 digits
+    (\s|-|\.)                     # separator
+    \d{4}                         # last 4 digits
+    (\s*(ext|x|ext.)\s*\d{2,5})?  # extension
+    )''', re.VERBOSE)
+</pre>
+
+<h3>Combining re.IGNORECASE, re.DOTALL, and re.VERBOSE</h3>
+<ul>
+    <li>someRegexValue = re.compile('foo', re.IGNORECASE | re.DOTALL | re.VERBOSE)</li>
+</ul>
+
+<h3>Project: Phone Number and Email Address Extractor</h3>
+<p>To do:</p>
+<ul>
+    <li>Get the text off the clipboard.</li>
+    <li>Find all phone numbers and email addresses in the text.</li>
+    <li>Paste them onto the clipboard.</li>
+</ul>
+<p>To code:</p>
+<ul>
+    <li>Use the pyperclip module to copy and paste strings.</li>
+    <li>Create two regexes, one for matching phone numbers and the other for matching email addresses.</li>
+    <li>Find all matches, not just the first match, of both regexes.</li>
+    <li>Neatly format the matched strings into a single string to paste.</li>
+    <li>Display some kind of message if no matches were found in the text.</li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/8b5b3bbf6e6ea865b9802ce2a78cad5e.js"></script>
+
+<h3>Summary</h3>
+<ul>
+    <li>search() to find a single match</li>
+    <li>findall() to find all matching instances</li>
+    <li>sub() to do a find-and-replace substitution of text</li>
+    <li><a href="https://docs.python.org/3/library/re.html" target="_blank">re — Regular expression operations</a></li>
+    <li><a href="https://www.regular-expressions.info/" target="_blank">regular-expressions.info/</a></li>
+</ul>
+<h3>Practice Questions</h3>
+<p>20. How would you write a regex that matches a number with commas for every three digits? It must match the following:</p>
+<script src="https://gist.github.com/TeddyCatTX/be9e23c1dc13f2ec4207cd50a3026672.js"></script>
+<p>21. How would you write a regex that matches the full name of someone whose last name is Watanabe? You can assume that the first name that comes before it will always be one word that begins with a capital letter. The regex must match the following:</p>
+<script src="https://gist.github.com/TeddyCatTX/98c65055d02335c9fa6fb33a3af06fd2.js"></script>
+<p>22. How would you write a regex that matches a sentence where the first word is either Alice, Bob, or Carol; the second word is either eats, pets, or throws; the third word is apples, cats, or baseballs; and the sentence ends with a period? This regex should be case-insensitive. It must match the following:</p>
+<script src="https://gist.github.com/TeddyCatTX/51bec584776815b06bb6d17c96623468.js"></script>
+
+<h3>Practice Projects</h3>
+<h4>Practice Projects: Date Detection</h4>
+<script src="https://gist.github.com/TeddyCatTX/29e2a3b727fbfb9577dbf3892795522e.js"></script>
+<h4>Practice Projects: Strong Password Detection</h4>
+<a href="https://www.reddit.com/r/learnpython/comments/ck3e27/strong_password_checker_automate_the_boring_stuff/" target="_blank">Validate any password with a single regex</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/c199ad7171730011e9e4f0707e425f6d.js"></script>
+<h4>Practice Projects: Regex Version of the strip() Method</h4>
+<a href="https://stackoverflow.com/questions/17350752/removing-trailing-white-spaces-with-python" target="_blank">Removing Trailing White Spaces with python</a><br><br>
+<a href="https://www.reddit.com/r/learnpython/comments/ijvru6/how_can_i_create_a_regex_version_of_a_strip/" target="_blank">How can I create a regex version of a strip() string method?</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/9c7b8f37491023a1281964be9fbc96ba.js"></script>

@@ -1,0 +1,140 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 11<br>Debugging</h1>
+<ol>
+    <li>Raising Exceptions</li>
+    <li>Getting the Traceback as a String</li>
+    <li>Assertions
+        <ul>
+            <li>3.1 Using an Assertion in a Traffic Light Simulation</li>
+        </ul>
+    </li>
+    <li>Logging
+        <ul>
+            <li>4.1 Using the logging Module</li>
+            <li>4.2 Don’t Debug with the print() Function</li>
+            <li>4.3 Logging Levels</li>
+            <li>4.4 Disabling Logging</li>
+            <li>4.5 Logging to a File</li>
+        </ul>
+    </li>
+    <li>Mu’s Debugger
+        <ul>
+            <li>5.1 Continue</li>
+            <li>5.2 Step In</li>
+            <li>5.3 Step Over</li>
+            <li>5.4 Step Out</li>
+            <li>5.5 Stop</li>
+            <li>5.6 Debugging a Number Adding Program</li>
+            <li>5.7 Breakpoints</li>
+        </ul>
+    </li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Project
+        <ul>
+            <li>8.1 Debugging Coin Toss</li>
+        </ul>
+    </li>
+</ol>
+
+<h2>1) Raising Exceptions</h2>
+<script src="https://gist.github.com/TeddyCatTX/5f29fcadea5a8b33954e847a8b85a0ab.js"></script>
+
+<h2>2) Getting the Traceback as a String</h2>
+<script src="https://gist.github.com/TeddyCatTX/d66e02ab4f351da0c32e3b37e0323f73.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/c8e95201c87158fa66b30e33ebdaac95.js"></script>
+
+<h2>3) Assertions</h2>
+<script src="https://gist.github.com/TeddyCatTX/5fdd7379910cb8494d562544c0d53324.js"></script>
+
+<h3>3.1 Using an Assertion in a Traffic Light Simulation</h3>
+<script src="https://gist.github.com/TeddyCatTX/2599031fe51d005471b3d8e93e4f4f51.js"></script>
+
+<h2>4) Logging</h2>
+<h3>4.1 Using the logging Module</h3>
+<script src="https://gist.github.com/TeddyCatTX/3b880ba9927a87244206effd2d77e512.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/6c79b9645bce27a6c77d6de3ddf67c3d.js"></script>
+<h3>4.2 Don’t Debug with the print() Function</h3>
+<ul>
+    <li>The nice thing about log messages is that you’re free to fill your program with as many as you like, and you can always disable them later by adding a single logging.disable(logging.CRITICAL) call.</li>
+</ul>
+<h3>4.3 Logging Levels</h3>
+<ul>
+<li>logging.debug()</li>
+<li>logging.info()</li>
+<li>logging.warning()</li>
+<li>logging.error()</li>
+<li>logging.critical()</li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/430809653919596a7390ad1b7bfc712c.js"></script>
+
+<h3>4.4 Disabling Logging</h3>
+<script src="https://gist.github.com/TeddyCatTX/1ef409394d15447ea49c413cf0bf4c1c.js"></script>
+
+<h3>4.5 Logging to a File</h3>
+<script src="https://gist.github.com/TeddyCatTX/06bda080cf8cbf4096149cdc3dc7f79f.js"></script>
+
+<h2>5) Mu’s Debugger</h2>
+<h3>5.1 Continue</h3>
+<h3>5.2 Step In</h3>
+<h3>5.3 Step Over</h3>
+<h3>5.4 Step Out</h3>
+<h3>5.5 Stop</h3>
+<h3>5.6 Debugging a Number Adding Program</h3>
+<h3>5.7 Breakpoints</h3>
+
+<h2>6) Summary</h2>
+<h2>7) Practice Questions</h2>
+
+<ol>
+    <li>Write an assert statement that triggers an AssertionError if the variable spam is an integer less than 10.<br><br>
+         - assert spam >= 10, 'The spam variable is less than 10.'<br><br>
+    </li>
+    <li>Write an assert statement that triggers an AssertionError if the variables eggs and bacon contain strings that are the same as each other, even if their cases are different (that is, 'hello' and 'hello' are considered the same, and 'goodbye' and 'GOODbye' are also considered the same).<br><br>
+         - Either assert eggs.lower() != bacon.lower() 'The eggs and bacon variables are the same!' <br> - or assert eggs.upper() != bacon.upper(), 'The eggs and bacon variables are the same!'<br><br>
+    </li>
+    <li>Write an assert statement that always triggers an AssertionError.<br><br>
+         - assert False, 'This assertion always triggers.'<br><br>
+    </li>
+    <li>What are the two lines that your program must have in order to be able to call logging.debug()?<br><br>
+         - import logging<br>
+         - logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s -
+         %(levelname)s -  %(message)s')<br><br>
+    </li>
+    <li>What are the two lines that your program must have in order to have logging.debug() send a logging message to a file named programLog.txt?<br><br>
+         - import logging<br>
+         - logging.basicConfig(filename='programLog.txt', level=logging.DEBUG, format=' %(asctime)s -  %(levelname)s -  %(message)s')<br><br>
+    </li>
+    <li>What are the five logging levels?<br><br>
+         - DEBUG
+         - INFO
+         - WARNING
+         - ERROR
+         - CRITICAL<br><br>
+    </li>
+    <li>What line of code can you add to disable all logging messages in your program?<br><br>
+         - logging.disable(logging.CRITICAL)<br><br>
+    </li>
+    <li>Why is using logging messages better than using print() to display the same message?<br><br>
+         - You can disable logging messages without removing the logging function calls. You can selectively disable lower-level logging messages. You can create logging messages. Logging messages provides a timestamp.<br><br>
+    </li>
+    <li>What are the differences between the Step Over, Step In, and Step Out buttons in the debugger?<br><br>
+         - The Step In button will move the debugger into a function call. The Step Over button will quickly execute the function call without stepping into it. The Step Out button will quickly execute the rest of the code until it steps out of the function it currently is in.<br><br>
+    </li>
+    <li>After you click Continue, when will the debugger stop?<br><br>
+        - After you click Continue, the debugger will stop when it has reached the end of the program or a line with a breakpoint.<br><br>
+    </li>
+    <li>What is a breakpoint?<br><br>
+         - A breakpoint is a setting on a line of code that causes the debugger to pause when the program execution reaches the line.<br><br>
+    </li>
+    <li>How do you set a breakpoint on a line of code in Mu?<br><br>
+         - To set a breakpoint in Mu, click the line number to make a red dot appear next to it.
+    </li>
+</ol>
+
+<h2>8) Practice Project</h2>
+<h3>8.1 Debugging Coin Toss</h3>
+<script src="https://gist.github.com/TeddyCatTX/fed1cb4356ebe387314923c45435be54.js"></script>
+<a href="https://github.com/thomaskellough/Automate-The-Boring-Stuff/blob/master/Practice-Projects/Ch%2010%20-%20Debugging%20Coin%20Toss.py" target="_blank">GitHub</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/12bc52efc07c463fca8b40c9730d7f1d.js"></script>

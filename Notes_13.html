@@ -1,0 +1,228 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 13<br>Working with Excel Spreadsheets</h1>
+
+<ol>
+    <li>Excel Documents</li>
+    <li>Installing the openpyxl Module</li>
+    <li>Reading Excel Documents
+        <ul>
+            <li>Opening Excel Documents with OpenPyXL</li>
+            <li>Getting Sheets from the Workbook</li>
+            <li>Getting Cells from the Sheets</li>
+            <li>Converting Between Column Letters and Numbers</li>
+            <li>Getting Rows and Columns from the Sheets</li>
+            <li>Workbooks, Sheets, Cells</li>
+        </ul>
+    </li>
+    <li>Project: Reading Data from a Spreadsheet
+        <ul>
+            <li>Step 1: Read the Spreadsheet Data<br>Step 2: Populate the Data Structure<br>Step 3: Write the Results to a File
+            </li>
+            <li>Ideas for Similar Programs</li>
+        </ul>
+    </li>
+    <li>Writing Excel Documents
+        <ul>
+            <li>Creating and Saving Excel Documents</li>
+            <li>Creating and Removing Sheets</li>
+            <li>Writing Values to Cells</li>
+        </ul>
+    </li>
+    <li>Project: Updating a Spreadsheet
+        <ul>
+            <li>Step 1: Set Up a Data Structure with the Update Information</li>
+            <li>Step 2: Check All Rows and Update Incorrect Prices</li>
+            <li>Ideas for Similar Programs</li>
+        </ul>    
+    </li>
+    <li>Setting the Font Style of Cells</li>
+    <li>Font Objects</li>
+    <li>Formulas</li>
+    <li>Adjusting Rows and Columns
+        <ul>
+            <li>Setting Row Height and Column Width</li>
+            <li>Merging and Unmerging Cells</li>
+            <li>Freezing Panes</li>
+        </ul>
+    </li>
+    <li>Charts</li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Projects
+        <ul>
+            <li>Multiplication Table Maker</li>
+            <li>Blank Row Inserter</li>
+            <li>Spreadsheet Cell Inverter</li>
+            <li>Text Files to Spreadsheet</li>
+            <li>Spreadsheet to Text Files</li>
+        </ul>
+    </li>
+</ol>
+//--<h1>Chapter 13<br>Working with Excel Spreadsheets</h1>
+<ul>
+    <li><a href="https://www.libreoffice.org/" target="_blank">LibreOffice</a></li>
+    <li><a href="https://www.openoffice.org/" target="_blank">OpenOffice</a></li>
+</ul>
+
+<h2>Excel Documents</h2>
+
+<h2>Installing the openpyxl Module</h2>
+<ul>
+    <li>pip install openpyxl==2.6.2</li>
+    <li><a href="https://openpyxl.readthedocs.io/en/stable/" target="_blank">Documentation for OpenPyXL</a></li>
+</ul>
+
+<h2>Reading Excel Documents</h2>
+<ul>
+    <li><a href="https://nostarch.com/automatestuff2/" target="_blank">Download example.xlsx</a></li>
+</ul>
+<h3>Opening Excel Documents with OpenPyXL</h3>
+<script src="https://gist.github.com/TeddyCatTX/8928700eea8164dcfe72795c712e5fbb.js"></script>
+
+<h3>Getting Sheets from the Workbook</h3>
+<script src="https://gist.github.com/TeddyCatTX/ae8673eafc4c323263d02de04d64b1e7.js"></script>
+<h3>Getting Cells from the Sheets</h3>
+<script src="https://gist.github.com/TeddyCatTX/2a982b5f18fd6ee835f117ce41cc1e2f.js"></script>
+<h3>Converting Between Column Letters and Numbers</h3>
+<script src="https://gist.github.com/TeddyCatTX/5f7bd8ff38e700d1fbb15100fb2d38f2.js"></script>
+
+<h3>Getting Rows and Columns from the Sheets</h3>
+<script src="https://gist.github.com/TeddyCatTX/8f27d5feaf5a46d3acb63a98b019a75c.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/8865032b14d9c97557b63bd5abbadadb.js"></script>
+<h3>Workbooks, Sheets, Cells</h3>
+<ol>
+    <li>Import the openpyxl module.</li>
+    <li>Call the openpyxl.load_workbook() function.</li>
+    <li>Get a Workbook object.</li>
+    <li>Use the active or sheetnames attributes.</li>
+    <li>Get a Worksheet object.</li>
+    <li>Use indexing or the cell() sheet method with row and column keyword arguments.</li>
+    <li>Get a Cell object.</li>
+    <li>Read the Cell object’s value attribute.</li>
+</ol>
+
+<h2>Project: Reading Data from a Spreadsheet</h2>
+<h3>Step 1: Read the Spreadsheet Data<br>
+    Step 2: Populate the Data Structure<br>
+    Step 3: Write the Results to a File
+</h3>
+<script src="https://gist.github.com/TeddyCatTX/5ce159db75d43f8ba4e75f3026e3109c.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/4e53bae32ef548d892213430d3d65b28.js"></script>
+
+<h3>Ideas for Similar Programs</h3>
+<ul>
+    <li>Compare data across multiple rows in a spreadsheet.</li>
+    <li>Open multiple Excel files and compare data between spreadsheets.</li>
+    <li>Check whether a spreadsheet has blank rows or invalid data in any cells and alert the user if it does.</li>
+    <li>Read data from a spreadsheet and use it as the input for your Python programs.</li>
+</ul>
+
+<h2>Writing Excel Documents</h2>
+
+<h3>Creating and Saving Excel Documents</h3>
+<script src="https://gist.github.com/TeddyCatTX/95ae78bf4c6f86759aa6f653896c3e3f.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/3c47d40e982b9cd0bfcac96f7d67e495.js"></script>
+
+<h3>Creating and Removing Sheets</h3>
+<script src="https://gist.github.com/TeddyCatTX/373cbd0d8e71d357a5ff222a87a73a60.js"></script>
+
+<h3>Writing Values to Cells</h3>
+<script src="https://gist.github.com/TeddyCatTX/ddde18f50e5d70db7c103c1e4026fb2d.js"></script>
+
+<h2>Project: Updating a Spreadsheet</h2>
+<h3>Step 1: Set Up a Data Structure with the Update Information<br>
+    Step 2: Check All Rows and Update Incorrect Prices
+</h3>
+<script src="https://gist.github.com/TeddyCatTX/04bb0d49f6c7f7c336c8acfcb61a9733.js"></script>
+<h3>Ideas for Similar Programs</h3>
+<ul>
+    <li>Read data from one spreadsheet and write it to parts of other spreadsheets.</li>
+    <li>Read data from websites, text files, or the clipboard and write it to a spreadsheet.</li>
+    <li>Automatically “clean up” data in spreadsheets. For example, it could use regular expressions to read multiple formats of phone numbers and edit them to a single, standard format.</li>
+</ul>
+
+<h2>Setting the Font Style of Cells</h2>
+<script src="https://gist.github.com/TeddyCatTX/2792df742bd4b252eac2632a1b8b5cbf.js"></script>
+
+<h2>Font Objects</h2>
+<script src="https://gist.github.com/TeddyCatTX/c00b6b919de0562dfb603c086e472916.js"></script>
+
+<h2>Formulas</h2>
+<script src="https://gist.github.com/TeddyCatTX/c69bcd176031a734e5b3472a6a4e7d84.js"></script>
+
+<h2>Adjusting Rows and Columns</h2>
+<h3>Setting Row Height and Column Width</h3>
+<script src="https://gist.github.com/TeddyCatTX/b83e110c7942e9650c4a2a7270cf0b80.js"></script>
+
+<h3>Merging and Unmerging Cells</h3>
+<script src="https://gist.github.com/TeddyCatTX/a0b4e22e139bf193b6ea2039151c5f53.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/1fdda1eccff78753d1a00f2c596c4944.js"></script>
+
+<h3>Freezing Panes</h3>
+<script src="https://gist.github.com/TeddyCatTX/be524b8951a97e732836cd2dfe2ccddf.js"></script>
+
+<h2>Charts</h2>
+<script src="https://gist.github.com/TeddyCatTX/dce4bc6723dcfd49fa6b0fbb93e33972.js"></script>
+
+<h2>Summary</h2>
+<ul>
+    <li>Often the hard part of processing information isn’t the processing itself but simply getting the data in the right format for your program.</li>
+</ul>
+
+<h2>Practice Questions</h2>
+<ol>
+    <li>What does the openpyxl.load_workbook() function return?<br>=> The openpyxl.load_workbook() function returns a Workbook object.<br><br></li>
+    <li>What does the wb.sheetnames workbook attribute contain?<br>=> The sheetnames attribute contains a Worksheet object.<br><br></li>
+    <li>How would you retrieve the Worksheet object for a sheet named 'Sheet1'?<br>=> Run wb['Sheet1'].<br><br></li>
+    <li>How would you retrieve the Worksheet object for the workbook’s active sheet?<br>=> Use wb.active.<br><br></li>
+    <li>How would you retrieve the value in the cell C5?<br>=> sheet['C5'].value or sheet.cell(row=5, column=3).value<br><br></li>
+    <li>How would you set the value in the cell C5 to "Hello"?<br>=> sheet['C5'] = 'Hello' or sheet.cell(row=5, column=3).value = 'Hello'<br><br></li>
+    <li>How would you retrieve the cell’s row and column as integers?<br>=> cell.row and cell.column<br><br></li>
+    <li>What do the sheet.max_column and sheet.max_row sheet attributes hold, and what is the data type of these attributes?<br>=> They hold the highest column and row with values in the sheet, respectively, as integer values.<br><br></li>
+    <li>If you needed to get the integer index for column 'M', what function would you need to call?<br>=> openpyxl.cell.column_index_from_string('M')<br><br></li>
+    <li>If you needed to get the string name for column 14, what function would you need to call?<br>=> openpyxl.cell.get_column_letter(14)<br><br></li>
+    <li>How can you retrieve a tuple of all the Cell objects from A1 to F1?<br>=>  sheet['A1':'F1']<br><br></li>
+    <li>How would you save the workbook to the filename example.xlsx?<br>=> wb.save('example.xlsx')<br><br></li>
+    <li>How do you set a formula in a cell?<br>=> A formula is set the same way as any value. Set the cell’s value attribute to a string of the formula text. Remember that formulas begin with the = sign.<br><br></li>
+    <li>If you want to retrieve the result of a cell’s formula instead of the cell’s formula itself, what must you do first?<br>=> When calling load_workbook(), pass True for the data_only keyword argument.<br><br></li>
+    <li>How would you set the height of row 5 to 100?<br>=> sheet.row_dimensions[5].height = 100<br><br></li>
+    <li>How would you hide column C?<br>=> sheet.column_dimensions['C'].hidden = True<br><br></li>
+    <li>What is a freeze pane?<br>=> Freeze panes are rows and columns that will always appear on the screen. They are useful for headers.<br><br></li>
+    <li>What five functions and methods do you have to call to create a bar chart?<br>=> openpyxl.chart.Reference()<br>=> openpyxl.chart.Series()<br>=> openpyxl.chart.BarChart()<br>=> chartObj.append(seriesObj)<br>=> add_chart()</li>
+</ol>
+
+<h2>Practice Projects</h2>
+
+<h3>Multiplication Table Maker</h3>
+<ul>
+    <li><a href="https://github.com/kudeh/automate-the-boring-stuff-projects/blob/master/multiplication-table-maker/multiplicationTable.py" target="_blank">GitHub</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/c522c3458f8b8c81d360593cee22bdbe.js"></script>
+
+<h3>Blank Row Inserter</h3>
+<ul>
+    <li><a href="https://www.geeksforgeeks.org/python-how-to-copy-data-from-one-excel-sheet-to-another/" target="_blank">Python | How to copy data from one excel sheet to another</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/16ce24386220f245047ed23969662118.js"></script>
+<ul>
+    <li><a href="https://josealermaiii.github.io/python-tutorials/_modules/AutomateTheBoringStuff/Ch12/Projects/P2_blankRowInserter.html" target="_blank">Source code for blankRowInserter</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/80d6595377aed58fbf68441afd2092b8.js"></script>
+
+<h3>Spreadsheet Cell Inverter</h3>
+<script src="https://gist.github.com/TeddyCatTX/815469667d50fd950d795cf85acb7883.js"></script>
+
+<h3>Text Files to Spreadsheet</h3>
+<u>
+    <li><a href="https://stackoverflow.com/questions/69561289/how-do-you-read-lines-from-all-files-in-a-directory" target="_blank">How do you read lines from all files in a directory?</a></li>
+    <li><a href="https://github.com/thomaskellough/Automate-The-Boring-Stuff/blob/master/Practice-Projects/Ch%2012%20-%20Text%20Files%20to%20Spreadsheet.py" target="_blank">thomaskellough Add files via upload</a></li>
+</u>
+<br><script src="https://gist.github.com/TeddyCatTX/0449a0663a37d29754edc4e3fcc7e1a9.js"></script>
+
+<h3>Spreadsheet to Text Files</h3>
+<ul>
+    <li>    <a href="https://josealermaiii.github.io/python-tutorials/_modules/AutomateTheBoringStuff/Ch12/Projects/P5_excelToText.html#main" target="_blank">Source code for excelToText</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/8a09dfac1eaac4c7e31acfb1f6404e59.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/35ef9e1d559511820f8887ec57f191cc.js"></script>

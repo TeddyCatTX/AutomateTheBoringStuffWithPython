@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 16<br>Working with CSV Files and JSON Data</h1>
+<ol>
+    <li>The csv Module
+        <ul>
+            <li>reader Objects</li>
+            <li>Reading Data from reader Objects in a for Loop</li>
+            <li>writer Objects</li>
+            <li>The delimiter and lineterminator Keyword Arguments</li>
+            <li>DictReader and DictWriter CSV Objects</li>
+        </ul>
+    </li>
+    <li>Project: Removing the Header from CSV Files
+        <ul>
+            <li>Step 1: Loop Through Each CSV File<br>Step 2: Read in the CSV File<br>Step 3: Write Out the CSV File Without the First Row</br></li>
+            <li>Ideas for Similar Programs</li>
+        </ul>
+    </li>
+    <li>JSON and APIs</li>
+    <li>The json Module
+        <ul>
+            <li>Reading JSON with the loads() Function</li>
+            <li>Writing JSON with the dumps() Function</li>
+        </ul>
+    </li>
+    <li>Project: Fetching Current Weather Data
+        <ul>
+            <li>Step 1: Get Location from the Command Line Argument<br>Step 2: Download the JSON Data<br>Step 3: Load JSON Data and Print Weather</li>
+            <li>Ideas for Similar Programs</li>
+        </ul>
+    </li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Project
+        <ul>
+            <li>Excel-to-CSV Converter</li>
+        </ul>
+    </li>
+</ol>
+
+<h1>Chapter 16<br>Working with CSV Files and JSON Data</h1>
+
+<h2>The csv Module</h2>
+
+<h3>reader Objects</h3>
+<script src="https://gist.github.com/TeddyCatTX/4036511bc624ec08fc6e88b731364000.js"></script>
+
+<h3>Reading Data from reader Objects in a for Loop</h3>
+<script src="https://gist.github.com/TeddyCatTX/9fac67927b237c229465b8e08bcc12be.js"></script>
+
+<h3>writer Objects</h3>
+<script src="https://gist.github.com/TeddyCatTX/be36df0fcc5eee7719fbe72a34a10b59.js"></script>
+
+<h3>The delimiter and lineterminator Keyword Arguments</h3>
+<script src="https://gist.github.com/TeddyCatTX/0b72d99fa17d98e20f353c724063c366.js"></script>
+
+<h3>DictReader and DictWriter CSV Objects</h3>
+<script src="https://gist.github.com/TeddyCatTX/af2c8ee03e0ad14b1d586fe1a47bf7be.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/33a69999c5d070cffc798ba8d155030a.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/bdc1d26399bdd8fc31db4df9140bca14.js"></script>
+
+<h2>Project: Removing the Header from CSV Files</h2>
+<h3>Step 1: Loop Through Each CSV File<br>Step 2: Read in the CSV File<br>Step 3: Write Out the CSV File Without the First Row</h3>
+<script src="https://gist.github.com/TeddyCatTX/6cc6787a7f666ad6054042cc07025a58.js"></script>
+
+<h3>Ideas for Similar Programs</h3>
+<ul>
+    <li>Compare data between different rows in a CSV file or between multiple CSV files.</li>
+    <li>Copy specific data from a CSV file to an Excel file, or vice versa.</li>
+    <li>Check for invalid data or formatting mistakes in CSV files and alert the user to these errors.</li>
+    <li>Read data from a CSV file as input for your Python programs.</li>
+</ul>
+
+<h2>JSON and APIs</h2>
+
+<h2>The json Module</h2>
+
+<h3>Reading JSON with the loads() Function</h3>
+<script src="https://gist.github.com/TeddyCatTX/dc8f5c08bf4a81c8b685ec552264c3f6.js"></script>
+
+<h3>Writing JSON with the dumps() Function</h3>
+<script src="https://gist.github.com/TeddyCatTX/96f16a6ecef0e5875ffcad4f7a31cfbe.js"></script>
+
+<h2>Project: Fetching Current Weather Data</h2>
+<h3>Step 1: Get Location from the Command Line Argument<br>Step 2: Download the JSON Data<br>Step 3: Load JSON Data and Print Weather</h3>
+<script src="https://gist.github.com/TeddyCatTX/8e60ea52c2c5f4eaa3ba80a3c5e9b9eb.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/24cd7d7b357be6e27fbd0f6948f292e0.js"></script>
+
+<h3>Ideas for Similar Programs</h3>
+<ul>
+    <li>Collect weather forecasts for several campsites or hiking trails to see which one will have the best weather.</li>
+    <li>Schedule a program to regularly check the weather and send you a frost alert if you need to move your plants indoors. (Chapter 17 covers scheduling, and Chapter 18 explains how to send email.)</li>
+    <li>Pull weather data from multiple sites to show all at once, or calculate and show the average of the multiple weather predictions.</li>
+</ul>
+
+<h2>Summary</h2>
+<h2>Practice Questions</h2>
+<ol>
+    <li>What are some features Excel spreadsheets have that CSV spread-sheets don’t?<br> - In Excel, spreadsheets can have values of data types other than strings; cells can have different fonts, sizes, or color settings; cells can have varying widths and heights; adjacent cells can be merged; and you can embed images and charts.<br><br></li>
+    <li>What do you pass to csv.reader() and csv.writer() to create reader and writer objects?<br> - You pass a File object, obtained from a call to open().<br><br></li>
+    <li>What modes do File objects for reader and writer objects need to be opened in?<br> - File objects need to be opened in read-binary ('rb') for reader objects and write-binary ('wb') for writer objects.<br><br></li>
+    <li>What method takes a list argument and writes it to a CSV file?<br> - The writerow() method<br><br></li>
+    <li>What do the delimiter and lineterminator keyword arguments do?<br> -  The delimiter argument changes the string used to separate cells in a row. The lineterminator argument changes the string used to separate rows.<br><br></li>
+    <li>What function takes a string of JSON data and returns a Python data structure?<br> - json.loads()<br><br></li>
+    <li>What function takes a Python data structure and returns a string of JSON data?<br> - json.dumps()</li>
+</ol>
+<h2>Practice Project</h2>
+<h3>Excel-to-CSV Converter</h3>
+<script src="https://gist.github.com/TeddyCatTX/1556cfb1b00f63d0ea2a9ecd86e19687.js"></script>

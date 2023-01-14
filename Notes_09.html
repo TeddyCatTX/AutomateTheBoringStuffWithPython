@@ -1,0 +1,479 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 9<br>Reading and Writing Files</h1>
+<ol>
+    <li>Files and File Paths
+        <ul>
+            <li>Backslash on Windows and Forward Slash on macOS and Linux</li>
+            <li>Using the / Operator to Join Paths</li>
+            <li>The Current Working Directory</li>
+            <li>The Home Directory</li>
+            <li>Absolute vs. Relative Paths</li>
+            <li>Creating New Folders Using the os.makedirs() Function</li>
+            <li>Handling Absolute and Relative Paths</li>
+            <li>Getting the Parts of a File Path</li>
+            <li>Finding File Sizes and Folder Contents</li>
+            <li>Modifying a List of Files Using Glob Patterns</li>
+            <li>Checking Path Validity</li>
+        </ul>
+    </li>
+    <li>The File Reading/Writing Process
+        <ul>
+            <li>Opening Files with the open() Function</li>
+            <li>Reading the Contents of Files</li>
+            <li>Writing to Files</li>
+        </ul>
+    </li>
+    <li>Saving Variables with the shelve Module</li>
+    <li>Saving Variables with the pprint.pformat() Function</li>
+    <li>Project: Generating Random Quiz Files
+        <ul>
+            <li>Step 1: Store the Quiz Data in a Dictionary</li>
+            <li>Step 2: Create the Quiz File and Shuffle the Question Order</li>
+            <li>Step 3: Create the Answer Options</li>
+            <li>Step 4: Write Content to the Quiz and Answer Key Files</li>
+        </ul>
+    </li>
+    <li>Project: Updatable Multi-Clipboard
+        <ul>
+            <li>Step 1: Comments and Shelf Setup</li>
+            <li>Step 2: Save Clipboard Content with a Keyword</li>
+            <li>Step 3: List Keywords and Load a Keyword’s Content</li>
+        </ul>
+    </li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Projects
+        <ul>
+            <li>Extending the Multi-Clipboard</li>
+            <li>Mad Libs</li>
+            <li>Regex Search</li>
+        </ul>
+    </li>
+</ol>
+
+<h2>1) Files and File Paths</h2>
+<h3>Backslash on Windows and Forward Slash on macOS and Linux</h3>
+<script src="https://gist.github.com/TeddyCatTX/2c41cc6d93f2c2319a791fbe876f8c4f.js"></script>
+<pre>
+    C:\Users\Al\accounts.txt
+    C:\Users\Al\details.csv
+    C:\Users\Al\invite.docx
+</pre>
+
+<h3>Using the / Operator to Join Paths</h3>
+<pre>
+    >>> from pathlib import Path
+
+    >>> Path('spam') / 'bacon' / 'eggs'
+    WindowsPath('spam/bacon/eggs')
+
+    >>> Path('spam') / Path('bacon/eggs')
+    WindowsPath('spam/bacon/eggs')
+
+    >>> Path('spam') / Path('bacon', 'eggs')
+    WindowsPath('spam/bacon/eggs')
+</pre>
+<pre>
+    >>> homeFolder = Path('C:/Users/Al')
+    >>> subFolder = Path('spam')
+
+    >>> homeFolder / subFolder
+    WindowsPath('C:/Users/Al/spam')
+
+    >>> str(homeFolder / subFolder)
+    'C:\\Users\\Al\\spam'
+</pre>
+
+<h3>The Current Working Directory</h3>
+<ul>
+    <li>Path.cwd() - get the current working directory as a string value</li>
+    <li>os.chdir() - change directory</li>
+</ul>
+<pre>
+    >>> from pathlib import Path
+    >>> import os
+
+    >>> Path.cwd()
+    WindowsPath('C:/Users/Al/AppData/Local/Programs/Python/Python37')'
+
+    >>> os.chdir('C:\\Windows\\System32')
+    >>> Path.cwd()
+    WindowsPath('C:/Windows/System32')
+</pre>
+
+<h3>The Home Directory</h3>
+<pre>
+    >>> Path.home()
+    WindowsPath('C:/Users/Al')
+</pre>
+
+<h3>Absolute vs. Relative Paths</h3>
+<ul>
+    <li>An absolute path, which always begins with the root folder</li>
+    <li>A relative path, which is relative to the program’s current working directory</li>
+    <li>-----</li>
+    <li>dot (.) - “this directory”</li>
+    <li>dot-dot (..) - “the parent folder”</li>
+</ul>
+
+<h3>Creating New Folders Using the os.makedirs() Function</h3>
+<pre>
+    >>> import os
+    >>> os.makedirs('C:\\delicious\\walnut\\waffles')
+</pre>
+To make a directory from a Path object, call the mkdir() method
+<pre>
+    >>> from pathlib import Path
+    >>> Path(r'C:\Users\Al\spam').mkdir()   
+</pre>
+
+<h3>Handling Absolute and Relative Paths</h3>
+<pre>
+    >>> Path.cwd()
+    WindowsPath('C:/Users/Al/AppData/Local/Programs/Python/Python37')
+    
+    >>> Path.cwd().is_absolute()
+    True
+
+    >>> Path('spam/bacon/eggs').is_absolute()
+    False
+</pre>
+To get an absolute path from a relative path, you can put Path.cwd() / in front of the relative Path object.
+<pre>
+    >>> Path('my/relative/path')
+    WindowsPath('my/relative/path')
+
+    >>> Path.cwd() / Path('my/relative/path')
+    WindowsPath('C:/Users/Al/AppData/Local/Programs/Python/Python37/my/relative/path')
+</pre>
+Gets an absolute path using the home directory instead of the current working directory:
+<pre>
+    >>> Path('my/relative/path')
+    WindowsPath('my/relative/path')
+
+    >>> Path.home() / Path('my/relative/path')
+    WindowsPath('C:/Users/Al/my/relative/path')
+</pre>
+The os.path Module
+<ul>
+    <li>os.path.abspath(path) will return a string of the absolute path of the argument</li>
+    <li>os.path.isabs(path) will return True if the argument is an absolute path and False if it is a relative path</li>
+    <li>os.path.relpath(path, start) will return a string of a relative path from the start path to path</li>
+</ul>
+<pre>
+    >>> os.path.abspath('.')
+    'C:\\Users\\Al\\AppData\\Local\\Programs\\Python\\Python37'
+    
+    >>> os.path.abspath('.\\Scripts')
+    'C:\\Users\\Al\\AppData\\Local\\Programs\\Python\\Python37\\Scripts'
+    
+    >>> os.path.isabs('.')
+    False
+
+    >>> os.path.isabs(os.path.abspath('.'))
+    True
+</pre>
+os.path.relpath()
+<pre>
+    >>> os.path.relpath('C:\\Windows', 'C:\\')
+    'Windows'
+
+    >>> os.path.relpath('C:\\Windows', 'C:\\spam\\eggs')
+    '..\\..\\Windows'
+</pre>
+
+<h3>Getting the Parts of a File Path</h3>
+The parts of a file path include the following:
+<ul>
+    <li>the anchor - the root folder</li>
+    <li>the drive - a physical hard drive or other storage device</li>
+    <li>The parent - the folder that contains the file</li>
+    <li>The file name - eg., some.html</li>
+</ul>
+To extract each attribute from the file path, enter the following into the interactive shell:
+<pre>
+    >>> p = Path('C:/Users/Al/spam.txt')
+    
+    >>> p.anchor
+    'C:\\'
+
+    >>> p.parent # This is a Path object, not a string.
+    WindowsPath('C:/Users/Al')
+
+    >>> p.name
+    'spam.txt'
+    
+    >>> p.stem
+    'spam'
+
+    >>> p.suffix
+    '.txt'
+
+    >>> p.drive
+    'C:'
+</pre>
+The parents attribute (which is different from the parent attribute) evaluates to the ancestor folders of a Path object with an integer index:
+<pre>
+    >>> Path.cwd()
+    WindowsPath('C:/Users/Al/AppData/Local/Programs/Python/Python37')
+
+    >>> Path.cwd().parents[0]
+    WindowsPath('C:/Users/Al/AppData/Local/Programs/Python')
+
+    >>> Path.cwd().parents[1]
+    WindowsPath('C:/Users/Al/AppData/Local/Programs')
+
+    >>> Path.cwd().parents[2]
+    WindowsPath('C:/Users/Al/AppData/Local')
+
+    >>> Path.cwd().parents[3]
+    WindowsPath('C:/Users/Al/AppData')
+
+    >>> Path.cwd().parents[4]
+    WindowsPath('C:/Users/Al')
+
+    >>> Path.cwd().parents[5]
+    WindowsPath('C:/Users')
+
+    >>> Path.cwd().parents[6]
+    WindowsPath('C:/')
+</pre>
+Dir name & Base name
+<pre>
+    >>> calcFilePath = 'C:\\Windows\\System32\\calc.exe'
+    
+    >>> os.path.basename(calcFilePath)
+    'calc.exe'
+
+    >>> os.path.dirname(calcFilePath)
+    'C:\\Windows\\System32'
+</pre>
+os.path.split()
+<pre>
+    >>> calcFilePath = 'C:\\Windows\\System32\\calc.exe'
+    
+    >>> os.path.split(calcFilePath)
+    ('C:\\Windows\\System32', 'calc.exe')
+</pre>
+os.path.dirname() and os.path.basename()
+<pre>
+    >>> (os.path.dirname(calcFilePath), os.path.basename(calcFilePath))
+    ('C:\\Windows\\System32', 'calc.exe')
+</pre>
+os.sep (Note that sep is in os, not os.path.)
+<pre>
+    >>> calcFilePath = 'C:\\Windows\\System32\\calc.exe'
+
+    >>> calcFilePath.split(os.sep)
+    ['C:', 'Windows', 'System32', 'calc.exe']
+</pre>
+
+<h3>Finding File Sizes and Folder Contents</h3>
+os.path.getsize(path) - return the size in bytes of the file in the path argument
+<pre>
+    >>> os.path.getsize('C:\\Windows\\System32\\calc.exe')
+    27648
+</pre>
+os.listdir(path) - return a list of filename strings for each file in the path argument. (Note that this function is in the os module, not os.path.)
+<pre>
+    >>> os.listdir('C:\\Windows\\System32')
+    ['0409', '12520437.cpx', '12520850.cpx', '5U877.ax', 'aaclient.dll', --snip-- 'xwtpdui.dll', 'xwtpw32.dll', 'zh-CN', 'zh-HK', 'zh-TW', 'zipfldr.dll']
+</pre>
+
+To find the total size of all the files in a directory, use os.path.getsize() and os.listdir() together
+<br><br><script src="https://gist.github.com/TeddyCatTX/1419ceb8778186b2c5930df3822af0d2.js"></script>
+
+<h3>Modifying a List of Files Using Glob Patterns</h3>
+glob() method - listing the contents of a folder according to a glob pattern
+<ul>
+    <li>p = Path('C:/Users/Al/Desktop')</li>
+    <li>p.glob('*')</li>
+    <li>p.glob('*.txt')</li>
+    <li>p.glob('project?.docx')</li>
+    <li>p.glob('*.?x?')</li>
+</ul>
+<pre>
+    >>> p = Path('C:/Users/Al/Desktop')
+    >>> p.glob('*')
+    <generator object Path.glob at 0x000002A6E389DED0>
+    >>> list(p.glob('*')) # Make a list from the generator.
+    [WindowsPath('C:/Users/Al/Desktop/1.png'), WindowsPath('C:/Users/Al/
+    Desktop/22-ap.pdf'), WindowsPath('C:/Users/Al/Desktop/cat.jpg'),
+      --snip--
+    WindowsPath('C:/Users/Al/Desktop/zzz.txt')]
+</pre>
+Like with regexes, you can create complex expressions:
+<pre>
+    >>> list(p.glob('*.txt') # Lists all text files.
+    [WindowsPath('C:/Users/Al/Desktop/foo.txt'),
+      --snip--
+    WindowsPath('C:/Users/Al/Desktop/zzz.txt')]
+</pre>
+In contrast with the asterisk, the question mark (?) stands for any single character:
+<pre>
+    >>> list(p.glob('project?.docx')
+    [WindowsPath('C:/Users/Al/Desktop/project1.docx'), WindowsPath('C:/Users/Al/
+    Desktop/project2.docx'),
+      --snip--
+    WindowsPath('C:/Users/Al/Desktop/project9.docx')]
+</pre>
+combine the asterisk and question mark to create even more complex glob expressions
+<pre>
+    >>> list(p.glob('*.?x?')
+    [WindowsPath('C:/Users/Al/Desktop/calc.exe'), WindowsPath('C:/Users/Al/
+    Desktop/foo.txt'),
+      --snip--
+    WindowsPath('C:/Users/Al/Desktop/zzz.txt')]
+</pre>
+glob() method lets you easily specify the files in a directory you want to perform some operation on
+<pre>
+    >>> p = Path('C:/Users/Al/Desktop')
+    >>> for textFilePathObj in p.glob('*.txt'):
+    ...     print(textFilePathObj) # Prints the Path object as a string.
+    ...     # Do something with the text file.
+    ...
+C:\Users\Al\Desktop\foo.txt
+C:\Users\Al\Desktop\spam.txt
+C:\Users\Al\Desktop\zzz.txt
+</pre>
+If you want to perform some operation on every file in a directory, you can use either os.listdir(p) or p.glob('*').
+
+<h3>Checking Path Validity</h3>
+Assuming that a variable p holds a Path object, you could expect the following:
+<ul>
+    <li>p.exists() returns True if the path exists or returns False if it doesn’t exist</li>
+    <li>p.is_file() returns True if the path exists and is a file, or returns False otherwise</li>
+    <li>p.is_dir() returns True if the path exists and is a directory, or returns False otherwise</li>
+</ul>
+<pre>
+    >>> winDir = Path('C:/Windows')
+    >>> notExistsDir = Path('C:/This/Folder/Does/Not/Exist')
+    >>> calcFile = Path('C:/Windows/System32/calc.exe')
+    
+    >>> winDir.exists()
+    True
+
+    >>> winDir.is_dir()
+    True
+
+    >>> notExistsDir.exists()
+    False
+
+    >>> calcFile.is_file()
+    True
+
+    >>> calcFile.is_dir()
+    False
+</pre>
+You can determine whether there is a DVD or flash drive currently attached to the computer by checking for it with the exists() method. For instance, if I wanted to check for a flash drive with the volume named D:\ on my Windows computer, I could do that with the following:
+<pre>
+    >>> dDrive = Path('D:/')
+
+    >>> dDrive.exists()
+    False
+</pre>
+
+<h2>2) The File Reading/Writing Process</h2>
+<a href="https://www.geeksforgeeks.org/reading-writing-text-files-python/" target="_blank">Reading and Writing to text files in Python</a>
+<br><br>
+<div style="background-color: antiquewhite; padding: 10px;">
+    <h3>Open => Read / Write / Append => Close</h3>
+    from pathlib import Path
+    <ul>
+        <li>write_text()</li>
+        <li>read_text()</li>
+        <li>----------</li>
+        <li>open() function
+            <ul>
+                <li>'r' for read mode</li>
+                <li>'w' for write mode</li>
+                <li>'a' for append mode</li>
+            </ul>
+        </li>
+        <li>----------</li>
+        <li>read() method</li>
+        <li>readline() method</li>
+        <li>readlines() method</li>
+        <li>----------</li>
+        <li>write() method</li>
+        <li>----------</li>
+        <li>close() method </li>
+    </ul>
+</div> 
+
+<h2>3) Saving Variables with the shelve Module</h2>
+<pre>
+    >>> import shelve
+    >>> shelfFile = shelve.open('mydata')
+    >>> cats = ['Zophie', 'Pooka', 'Simon']
+    >>> shelfFile['cats'] = cats
+    >>> shelfFile.close()
+    ----------------------------------------
+    >>> shelfFile = shelve.open('mydata')
+    >>> list(shelfFile.keys())
+    ['cats']
+    >>> list(shelfFile.values())
+    [['Zophie', 'Pooka', 'Simon']]
+    >>> shelfFile.close()
+</pre>
+
+<h2>4) Saving Variables with the pprint.pformat() Function</h2>
+<pre>
+    >>> import pprint
+    >>> cats = [{'name': 'Zophie', 'desc': 'chubby'}, {'name': 'Pooka', 'desc': 'fluffy'}]
+    >>> pprint.pformat(cats)
+    "[{'desc': 'chubby', 'name': 'Zophie'}, {'desc': 'fluffy', 'name': 'Pooka'}]"
+    >>> fileObj = open('myCats.py', 'w')
+    >>> fileObj.write('cats = ' + pprint.pformat(cats) + '\n')
+    83
+    >>> fileObj.close()
+    --------------------------------------------
+    >>> import myCats
+    >>> myCats.cats
+    [{'name': 'Zophie', 'desc': 'chubby'}, {'name': 'Pooka', 'desc': 'fluffy'}]
+    >>> myCats.cats[0]
+    {'name': 'Zophie', 'desc': 'chubby'}
+    >>> myCats.cats[0]['name']
+    'Zophie'
+</pre>
+
+<h2>5) Project: Generating Random Quiz Files</h2>
+<ul>
+    <li>Step 1: Store the Quiz Data in a Dictionary</li>
+    <li>Step 2: Create the Quiz File and Shuffle the Question Order</li>
+    <li>Step 3: Create the Answer Options</li>
+    <li>Step 4: Write Content to the Quiz and Answer Key Files</li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/e667b486348cb70b6837a01e0ec14066.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/d06511251f67e504fd101b293e84a44f.js"></script>
+
+<h2>6) Project: Updatable Multi-Clipboard</h2>
+<ul>
+    <li>Step 1: Comments and Shelf Setup</li>
+    <li>Step 2: Save Clipboard Content with a Keyword</li>
+    <li>Step 3: List Keywords and Load a Keyword’s Content</li>
+</ul>
+<blockquote>
+To run Python scripts with the python command, you need to open a command-line and type in the word python , or python3 if you have both versions, followed by the path to your script, just like this: $ python3 hello.py Hello World! If everything works okay, after you press Enter , you'll see the phrase Hello World!
+</blockquote>
+<script src="https://gist.github.com/TeddyCatTX/dffd7b1bf536d0aa729556f48e9c0ff9.js"></script>
+
+<h2>7) Summary</h2>
+<h2>8) Practice Questions</h2>
+<h2>9) Practice Projects</h2>
+
+<h2>9.1) Extending the Multi-Clipboard</h2>
+<a href="https://stackoverflow.com/questions/41091008/deleting-all-keys-in-a-shelve-file-through-terminal-command-line" target="_blank">Deleting all keys in a shelve file through terminal/command line</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/b52ca675e85da4d42f78b94163366d88.js"></script>
+
+<h2>9.2) Mad Libs</h2>
+<a href="https://gist.github.com/Petelinow/0aca8310a7f21a4d13cbbe3f94cfa952" target="_blank">Mad Libs</a><br>
+<a href="https://stackoverflow.com/questions/47492847/automate-the-boring-stuff-with-python-madlibs-project-with-shelve-module" target="_blank">Stack Over Flow</a><br>
+<a href="https://stackoverflow.com/questions/6005891/replace-first-occurrence-only-of-a-string" target="_blank">Replace first occurrence only of a string?</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/c3cc03f0f1dff436b8dc9a7950c0f120.js"></script>
+
+<h2>9.3) Regex Search</h2>
+<a href="https://www.pythontutorial.net/python-regex/python-regex-findall/" target="_blank">Python Regex findall()</a><br><br>
+<a href="https://www.geeksforgeeks.org/how-to-use-glob-function-to-find-files-recursively-in-python/" target="_blank">How to use Glob() function to find files recursively in Python?</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/8f9ddaaf2a1c964a11ffe45419ba5f22.js"></script>

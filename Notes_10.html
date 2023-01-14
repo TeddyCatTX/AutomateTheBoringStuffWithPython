@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 10<br>Organizing Files</h1>
+<ul>
+    <li>1 The shutil Module</li>
+    <li>1.1 Copying Files and Folders</li>
+    <li>1.2 Moving and Renaming Files and Folders</li>
+    <li>1.3 Permanently Deleting Files and Folders</li>
+    <li>1.4 Safe Deletes with the send2trash Module</li>
+    <li>----------</li>
+    <li>2 Walking a Directory Tree</li>
+    <li>----------</li>
+    <li>3 Compressing Files with the zipfile Module</li>
+    <li>3.1 Reading ZIP Files</li>
+    <li>3.2 Extracting from ZIP Files</li>
+    <li>3.3 Creating and Adding to ZIP Files</li>
+    <li>----------</li>
+    <li>4 Project: Renaming Files with American-Style Dates to European-Style Dates</li>
+    <li>4.1 Step 1: Create a Regex for American-Style Dates</li>
+    <li>4.2 Step 2: Identify the Date Parts from the Filenames</li>
+    <li>4.3 Step 3: Form the New Filename and Rename the Files</li>
+    <li>4.4 Ideas for Similar Programs</li>
+    <li>----------</li>
+    <li>5 Project: Backing Up a Folder into a ZIP File</li>
+    <li>5.1 Step 1: Figure Out the ZIP File’s Name</li>
+    <li>5.2 Step 2: Create the New ZIP File</li>
+    <li>5.3 Step 3: Walk the Directory Tree and Add to the ZIP File</li>
+    <li>5.4 Ideas for Similar Programs</li>
+    <li>----------</li>
+    <li>6 Summary</li>
+    <li>----------</li>
+    <li>7 Practice Questions</li>
+    <li>----------</li>
+    <li>8 Practice Projects</li>
+    <li>8.1 Selective Copy</li>
+    <li>8.2 Deleting Unneeded Files</li>
+    <li>8.3 Filling in the Gaps</li>
+</ul>
+
+<h2>1) The shutil Module</h2>
+<h3>1.1 Copying Files and Folders</h3>
+<ul>
+    <li>shutil.copy(source, destination)</li>
+    <li>shutil.copytree(source, destination)</li>
+</ul>
+<h3>1.2 Moving and Renaming Files and Folders</h3>
+<ul>
+    <li>shutil.move(source, destination)</li>
+</ul>
+<h3>1.3 Permanently Deleting Files and Folders</h3>
+<ul>
+    <li>os.unlink(path)</li>
+    <li>os.rmdir(path)</li>
+    <li>shutil.rmtree(path)</li>
+    <li><a href="https://stackoverflow.com/questions/3964681/find-all-files-in-a-directory-with-extension-txt-in-python" target="_blank">Find all files in a directory with extension .txt in Python</a></li>
+</ul>
+<h3>1.4 Safe Deletes with the send2trash Module</h3>
+<ul>
+    <li>send2trash module</li>
+    <li>send2trash.send2trash(path)</li>
+</ul>
+
+<h2>2) Walking a Directory Tree</h2>
+<ul>
+    <li>os.walk()</li>
+    <li>the os.walk() function will return three values on each iteration through the loop:</li>
+    <li>A string of the current folder’s name</li>
+    <li>A list of strings of the folders in the current folder</li>
+    <li>A list of strings of the files in the current folder</li>
+</ul>
+
+<h2>3) Compressing Files with the zipfile Module</h2>
+<h3>3.1 Reading ZIP Files</h3>
+<ul>
+    <li>zipfile.ZipFile() function - to create a ZipFile object</li>
+    <li>zipfile module</li>
+    <li>ZipFile() function</li>
+    <li>namelist() method</li>
+    <li>getinfo() method</li>
+    <li>file_size()</li>
+    <li>compress_size()</li>
+    <li><a href="https://stackoverflow.com/questions/3678842/using-python-getting-the-name-of-files-in-a-zip-archive" target="_blank">Using Python, getting the name of files in a zip archive</a></li>
+</ul>
+<a href="https://thispointer.com/python-how-to-get-the-list-of-all-files-in-a-zip-archive/" target="_blank">Python : How to get the list of all files in a zip archive</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/bde2f7b15dbd280d62d6fc8f50f3a442.js"></script>
+<h3>3.2 Extracting from ZIP Files</h3>
+<ul>
+    <li>extractall() method for ZipFile objects</li>
+    <li>exampleZip.extractall('C:\\delicious') - extract the files into a folder</li>
+    <li>The extract() method for ZipFile objects - extract a single file from the ZIP file</li>
+</ul>
+<h3>3.3 Creating and Adding to ZIP Files</h3>
+<ul>
+    <li>zipfile.ZipFile('new.zip', 'w')</li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/246bf02b8da804be1040ddcf0b649ab0.js"></script>
+
+<h2>4) Project: Renaming Files with American-Style Dates to European-Style Dates</h2>
+<h3>Step 1: Create a Regex for American-Style Dates</h3>
+<h3>Step 2: Identify the Date Parts from the Filenames</h3>
+<h3>Step 3: Form the New Filename and Rename the Files</h3>
+<script src="https://gist.github.com/TeddyCatTX/23e69088b25939333cf3b1befca0f072.js"></script>
+<h3>4.4 Ideas for Similar Programs</h3>
+
+<h2>5) Project: Backing Up a Folder into a ZIP File</h2>
+<h3>Step 1: Figure Out the ZIP File’s Name</h3>
+<h3>Step 2: Create the New ZIP File</h3>
+<h3>Step 3: Walk the Directory Tree and Add to the ZIP File</h3>
+<script src="https://gist.github.com/TeddyCatTX/07552a6c6a1c8612a14a7bddcfb511f9.js"></script>
+<h3>5.4 Ideas for Similar Programs</h3>
+
+<h2>6) Summary</h2>
+<h2>7) Practice Questions</h2>
+<ul>
+    <li>shutil.copy() copy a single file</li>
+    <li>shutil.copytree() copy an entire folder and every folder and file contained in it</li>
+    <li>shutil.move() renaming files as well as moving them</li>
+    <li>send2trash functions will move a file or folder to the recycle bin</li>
+    <li>shutil functions will permanently delete files and folders</li>
+    <li>zipfile.ZipFile() function is equivalent to the open() function</li>
+</ul>
+
+<h2>8) Practice Projects</h2>
+<h3>8.1 Selective Copy</h3>
+<a href="https://www.geeksforgeeks.org/shutil-module-in-python/#:~:text=shutil.copy%20%28%29%20method%20in%20Python%20is%20used%20to,destination%20can%20be%20a%20file%20or%20a%20directory." target="_blank">Shutil Module in Python</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/6f2ee215b64fa4e65bf9368a44aca5c8.js"></script>
+<h3>8.2 Deleting Unneeded Files</h3>
+<a href="https://stackoverflow.com/questions/46268521/chapter-9-automate-the-boring-stuff-with-python-practice-project-deleting-unne" target="_blank">stackOverflow</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/00ab171eb4bac6ae83b94bac4f1cdcfe.js"></script>
+<h3>8.3 Filling in the Gaps</h3>
+<a href="https://gist.github.com/TeddyCatTX/de9a0a2e1a54b073f8806b0f3fc3b1f4" target="_blank">GitHub</a>
+<script src="https://gist.github.com/TeddyCatTX/d2ae1fc2e9ef413e3ea496dcaa3ab9cc.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/de9a0a2e1a54b073f8806b0f3fc3b1f4.js"></script>

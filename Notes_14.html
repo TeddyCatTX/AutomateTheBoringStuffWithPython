@@ -1,0 +1,142 @@
+<link rel="stylesheet" href="styles.css">
+
+
+<h1>Chapter 14<br>Working with Google Spreadsheets</h1>
+<ol>
+    <li>Installing and Setting Up EZSheets
+        <ul>
+            <li>Obtaining Credentials and Token Files</li>
+            <li>Revoking the Credentials File</li>
+        </ul>
+    </li>
+    <li>Spreadsheet Objects
+        <ul>
+            <li>Creating, Uploading, and Listing Spreadsheets</li>
+            <li>Spreadsheet Attributes</li>
+            <li>Downloading and Uploading Spreadsheets</li>
+            <li>Deleting Spreadsheets</li>
+        </ul>
+    </li>
+    <li>Sheet Objects
+        <ul>
+            <li>Reading and Writing Data</li>
+            <li>Column and Row Addressing</li>
+            <li>Reading and Writing Entire Columns and Rows</li>
+            <li>Creating and Deleting Sheets</li>
+            <li>Copying Sheets</li>
+        </ul>
+    </li>
+    <li>Working with Google Sheets Quotas</li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Projects
+        <ul>
+            <li>Downloading Google Forms Data</li>
+            <li>Converting Spreadsheets to Other Formats</li>
+            <li>Finding Mistakes in a Spreadsheet</li>
+        </ul>
+    </li>
+</ol>
+<hr>
+<h1>Chapter 14<br>Working with Google Spreadsheets</h1>
+<ul>
+    <li><a href="https://www.google.com/search?q=automatetheboringstuff+WORKING+WITH+GOOGLE+SHEETS&oq=automatetheboringstuff+WORKING+WITH+GOOGLE+SHEETS&aqs=chrome.0.69i59.22604j0j7&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:05fa63a8,vid:YOkmlCKOrc0" target="_blank">YouTube</a></li>
+    <li><a href="https://blog.coupler.io/python-to-google-sheets/" target="_blank">How to Connect Python to Google Sheets</a></li>
+</ul>
+<h2>Installing and Setting Up EZSheets</h2>
+<ul>
+    <li><a href="https://ezsheets.readthedocs.io/en/latest/" target="_blank">EZSheets</a></li>
+    <li>pip install ezsheets</li>
+</ul>
+<h3>Obtaining Credentials and Token Files</h3>
+<h3>Revoking the Credentials File</h3>
+
+<h2>Spreadsheet Objects</h2>
+<h3>Creating, Uploading, and Listing Spreadsheets</h3>
+<h3>Spreadsheet Attributes</h3>
+<h3>Downloading and Uploading Spreadsheets</h3>
+<h3>Deleting Spreadsheets</h3>
+
+<h2>Sheet Objects</h2>
+<h3>Reading and Writing Data</h3>
+<h3>Column and Row Addressing</h3>
+<h3>Reading and Writing Entire Columns and Rows</h3>
+<h3>Creating and Deleting Sheets</h3>
+<h3>Copying Sheets</h3>
+
+<h2>Working with Google Sheets Quotas</h2>
+<h2>Summary</h2>
+<h2>Practice Questions</h2>
+<ol>
+    <li>What three files do you need for EZSheets to access Google Sheets?
+        <br> - a credentials file
+        <br> - a token file for Google Sheets
+        <br> - a token file for Google Drive<br><br>
+    </li>
+    <li>What two types of objects does EZSheets have?
+        <br> - ezsheets.Spreadsheet
+        <br> - ezsheets.Sheet<br><br>
+    </li>
+    <li>How can you create an Excel file from a Google Sheet spreadsheet?
+        <br> - Call the downloadAsExcel() Spreadsheet method.<br><br>
+    </li>
+    <li>How can you create a Google Sheet spreadsheet from an Excel file?
+        <br> - Call the ezsheets.upload() function and pass the filename of the Excel file.<br><br>
+    </li>
+    <li>The ss variable contains a Spreadsheet object. What code will read data from the cell B2 in a sheet titled “Students”?
+        <br> - Access ss['Students']['B2'].<br><br>
+    </li>
+    <li>How can you find the column letters for column 999?        
+        <br> - Call ezsheets.getColumnLetterOf(999).<br><br>
+    </li>
+    <li>How can you find out how many rows and columns a sheet has?        
+        <br> - Access the rowCount and columnCount properties of the Sheet object.<br><br>
+    </li>
+    <li>How do you delete a spreadsheet? Is this deletion permanent?
+        <br> - Call the delete() Sheet method. This is only permanent if you pass the permanent=True keyword argument.<br><br>
+    </li>
+    <li>What functions will create a new Spreadsheet object and a new Sheet object, respectively?        
+        <br> - The createSpreadsheet() function and createSheet() Spreadsheet method will create Spreadsheet and Sheet objects, respectively.<br><br>
+    </li>
+    <li>What will happen if, by making frequent read and write requests with EZSheets, you exceed your Google account’s quota?        
+        <br> - EZSheets will throttle your method calls.<br><br>
+    </li>
+</ol>
+
+<h2>Practice Projects</h2>
+<h3>Downloading Google Forms Data</h3>
+<p>Google Forms allows you to create simple online forms that make it easy to collect information from people. The information they enter into the form is stored in a Google Sheet. For this project, write a program that can automatically download the form information that users have submitted. Go to https://docs.google.com/forms/ and start a new form; it will be blank. Add fields to the form that ask the user for a name and email address. Then click the Send button in the upper right to get a link to your new form, such as https://goo.gl/forms/QZsq5sC2Qe4fYO592/. Try to enter a few example responses into this form.
+<br><br>On the “Responses” tab of your form, click the green Create Spreadsheet button to create a Google Sheets spreadsheet that will hold the responses that users submit. You should see your example responses in the first rows of this spreadsheet. Then write a Python script using EZSheets to collect a list of the email addresses on this spreadsheet.</p>
+<script src="https://gist.github.com/TeddyCatTX/7a0a53180bca1635191c5aff360e8af6.js"></script>
+V2 by ChatGPT
+<script src="https://gist.github.com/TeddyCatTX/2382bfb254bd762fd0fb0a0cb80054b5.js"></script>
+
+<h3>Converting Spreadsheets to Other Formats</h3>
+<p>You can use Google Sheets to convert a spreadsheet file into other formats. Write a script that passes a submitted file to upload(). Once the spreadsheet has uploaded to Google Sheets, download it using downloadAsExcel(), downloadAsODS(), and other such functions to create a copy of the spreadsheet in these other formats.</p>
+<a href="https://pypi.org/project/EZSheets/" target="_blank">Spreadsheet objects have a title and spreadsheetId attributes:</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/d1c6a01eca10593014e094753959a075.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/203ed8de0699e80e1f981f8371f1cb8a.js"></script>
+V2 by ChatGPT
+<script src="https://gist.github.com/TeddyCatTX/2337d40a55fee5a69bf5cbe8468a2b06.js"></script>
+
+<h3>Finding Mistakes in a Spreadsheet</h3>
+<script src="https://gist.github.com/TeddyCatTX/1cc30c063d1650eefe258384c421ba6e.js"></script>
+V2 by ChatGPT
+<p>Yes, your Python code is correct and should run without any errors. It imports the ezsheets library, then uses that library to open the specified spreadsheet using its ID. The code then loops through the rows in the first sheet of the spreadsheet and checks whether the first column of each row is not empty. If the first column is not empty, the code increments the rowChecked variable by 1.
+
+    <br><br>The code then loops through the rows again, this time starting from the second row. For each row, the code retrieves the values from the first three columns, converts them to integers, and calculates the product of the first two values. If the product does not equal the third value, the code prints out information about the incorrect total, including the row number and the expected and actual values.
+    
+    <br><br>Overall, the code appears to be well-written and should function as intended. However, there are a few minor changes that you could make to improve it. For example, you could move the line that prints out the total number of rows checked to the end of the code, after the second loop has completed, so that the number is only printed once. Additionally, the second loop is not necessary, and you could simply combine the two loops into one. Finally, it is generally considered good practice to include a main block in your Python code to define the entry point of your program, which will make it easier to run your code and import it into other modules. Here is an example of how you could modify your code to incorporate these changes:</p>
+<script src="https://gist.github.com/TeddyCatTX/a3371e9faf4c03cfe20fe70775ae44ac.js"></script>
+V3 by Me (We do need the second loop)
+<script src="https://gist.github.com/TeddyCatTX/91c2bdc7462499aa0dc9888699c29f90.js"></script>
+V4 by Me (Checked by ChatGPT)
+<p>Your code looks good! Here are a few suggestions for improvement:
+<ol>
+<li>You can simplify the code for checking if a cell is empty by using the not operator instead of comparing the value to an empty string.
+</li>
+<li>You can simplify the code for printing the results by using a single print statement with string formatting instead of two separate print statements.</li>
+</ol>
+Here is how your code could look with these changes applied:
+</p>
+<script src="https://gist.github.com/TeddyCatTX/66e1a12dd9f519ecc87acbec623d995e.js"></script>

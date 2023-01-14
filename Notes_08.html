@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="styles.css">
+
+<h2>Chapter 8 – Input Validation</h2>
+
+<h3>The PyInputPlus Module</h3>
+<ul>
+    <li>pip install pyinputplus</li>
+    <li>-----</li>
+    <li>inputStr()</li>
+    <li>inputNum()</li>
+    <li>inputChoice()</li>
+    <li>inputMenu()</li>
+    <li>inputDatetime()</li>
+    <li>inputYesNo()</li>
+    <li>inputBool()</li>
+    <li>inputEmail()</li>
+    <li>inputFilepath()</li>
+    <li>inputPassword()</li>
+    <li>-----</li>
+    <li>help(pyip.inputChoice)</li>
+    <li><a href="https://pyinputplus.readthedocs.io/en/latest/" target="_blank">Complete documentation</a></li>
+</ul>
+
+<h4>The min, max, greaterThan, and lessThan Keyword Arguments</h4>
+<ul>
+    <li>inputNum()</li>
+    <li>inputInt()</li>
+    <li>inputFloat()</li>
+    <li>-----</li>
+    <li>response = pyip.inputNum('Enter num: ', min=4)</li>
+    <li>response = pyip.inputNum('Enter num: ', greaterThan=4)</li>
+    <li>response = pyip.inputNum('>', min=4, lessThan=6)</li>
+</ul>
+
+<h4>The blank Keyword Argument</h4>
+<ul>
+    <li>By default, blank input isn’t allowed unless the blank keyword argument is set to True:</li>
+    <li>response = pyip.inputNum(blank=True)</li>
+</ul>
+
+<h4>The limit, timeout, and default Keyword Arguments</h4>
+<ul>
+    <li>response = pyip.inputNum(limit=2)</li>
+    <li>response = pyip.inputNum(limit=2, default='N/A')</li>
+</ul>
+
+<h4>The allowRegexes and blockRegexes Keyword Arguments</h4>
+<ul>
+    <li>response = pyip.inputNum(allowRegexes=[r'(I|V|X|L|C|D|M)+', r'zero'])</li>
+    <li>response = pyip.inputNum(blockRegexes=[r'[02468]$'])</li>
+    <li><a href="https://pyinputplus.readthedocs.io/en/latest/" target="_blank">Full documentation</a></li>
+</ul>
+
+<h4>Passing a Custom Validation Function to inputCustom()</h4>
+<ul>
+    <li>inputCustom()</li>
+    <li>inputCustom(addsUpToTen)</li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/a500d87f745e2b28eb9f58052cb7d73b.js"></script>
+
+<h3>Project: How to Keep an Idiot Busy for Hours</h3>
+<script src="https://gist.github.com/TeddyCatTX/96704143c0afd321cd41107cf14fac8d.js"></script>
+
+<h3>Project: Multiplication Quiz</h3>
+<script src="https://gist.github.com/TeddyCatTX/883d2af7941b311b91824681082d8dba.js"></script>
+
+<h3>Summary</h3>
+<ul>
+    <li>inputChoice()</li>
+    <li>inputMenu()</li>
+    <li>-----</li>
+    <li>Standard features:</li>
+    <li>stripping whitespace from the sides</li>
+    <li>timeout</li>
+    <li>retry limits</li>
+    <li>allowRegexes</li>
+    <li>blockRegexes</li>
+    <li>-----</li>
+    <li>inputCustom()</li>
+    <li><a href="https://pyinputplus.readthedocs.io/en/latest/" target="_blank">Documentation</a></li>
+</ul>
+
+<h3>Practice Questions</h3>
+<ul>
+    <li>pyip.inputint(min=0, max=99)</li>
+</ul>
+
+<h3>Practice Projects</h3>
+<h4>Practice Projects: Sandwich Maker</h4>
+<a href="https://www.reddit.com/r/learnpython/comments/imzqi3/sandwich_maker_project_from_automate_the_boring/" target="_blank">Reddit</a><br><br>
+<script src="https://gist.github.com/TeddyCatTX/da101477df9d0050c3f664d6ac7d7710.js"></script>
+<h4>Practice Projects: Write Your Own Multiplication Quiz</h4>
+<ul>
+    <li><a href="https://stackoverflow.com/questions/35591305/using-the-while-loop-to-give-the-user-3-attempts-for-a-valid-input-value" target="_blank">
+        Using the while loop to give the user 3 attempts for a valid input value</a></li>
+    <li><a href="https://unicode-table.com/en/sets/check/" target="_blank">
+        Check, Checkbox</a></li>
+    <li><a href="https://stackoverflow.com/questions/32298668/how-to-validate-a-users-input-to-numbers-only" target="_blank">
+        How to validate a users input to Numbers only?</a></li>
+    <li><a href="https://www.codegrepper.com/code-examples/python/how+to+set+a+timer+on+python" target="_blank">
+        “how to set a timer on python” Code Answer’s</a></li>
+    <li>tic = time.perf_counter()</li>
+    <li>toc = time.perf_counter()</li>
+    <li>int(f"{(toc - tic)%60:0.0f}") >= 8</li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/0c3f3d2d619296fa362b37e3e6603a3d.js"></script>
+<ul>
+    <li><a href="https://www.reddit.com/r/learnpython/comments/wg9j0t/automate_the_boring_stuff_with_python_chapter_8/" target="_blank">Automate the Boring Stuff with Python Chapter 8 - Multiplication Quiz</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/2ef7f785d0a3ec03d4cfb1a2c42a965c.js"></script>

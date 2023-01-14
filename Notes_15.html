@@ -1,0 +1,230 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 15<br>Working with PDF and Word Documents</h1>
+<ol>
+    <li>PDF Documents
+        <ul>
+            <li>Extracting Text from PDFs</li>
+            <li>Decrypting PDFs</li>
+            <li>Creating PDFs</li>
+            <li>Copying Pages</li>
+            <li>Rotating Pages</li>
+            <li>Overlaying Pages</li>
+            <li>Encrypting PDFs</li>
+        </ul>
+    </li>
+    <li>Project: Combining Select Pages from Many PDFs
+        <ul>
+            <li>Step 1: Find All PDF Files
+            <br>Step 2: Open Each PDF
+            <br>Step 3: Add Each Page
+            <br>Step 4: Save the Results</li>
+            <li>Ideas for Similar Programs</li>
+        </ul>
+    </li>
+    <li>Word Documents
+        <ul>
+            <li>Reading Word Documents</li>
+            <li>Getting the Full Text from a .docx File</li>
+            <li>Styling Paragraph and Run Objects</li>
+            <li>Creating Word Documents with Nondefault Styles</li>
+            <li>Run Attributes</li>
+            <li>Writing Word Documents</li>
+            <li>Adding Headings</li>
+            <li>Adding Line and Page Breaks</li>
+            <li>Adding Pictures</li>
+        </ul>
+    </li>
+    <li>Creating PDFs from Word Documents</li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Projects
+        <ul>
+            <li>PDF Paranoia</li>
+            <li>Custom Invitations as Word Documents</li>
+            <li>Brute-Force PDF Password Breaker</li>
+        </ul>
+    </li>
+</ol>
+
+<h1>Chapter 15<br>Working with PDF and Word Documents</h1>
+<ul>
+    <li>PyPDF2</li>
+    <li>PythonDocx</li>
+</ul>
+<h2>PDF Documents</h2>
+<ul>
+    <li>pip install PyPDF2==1.26.0</li>
+    <li>c:\users\kayga\appdata\roaming\python\python310\site-packages (1.26.0)</li>
+</ul>
+<h3>Extracting Text from PDFs</h3>
+<p>The code looks correct. It opens a PDF file using the open function, then creates a PdfFileReader object using the file object. It then gets the number of pages in the PDF file using the numPages attribute, gets the first page using the getPage method, and extracts the text from the page using the extractText method. Finally, it prints the number of pages and the text of the first page.</p>
+<script src="https://gist.github.com/TeddyCatTX/4f073d1b9de032669328ce50151a226e.js"></script>
+
+<h3>Decrypting PDFs</h3>
+<script src="https://gist.github.com/TeddyCatTX/2533ba16ba2196f028a083f205b1e710.js"></script>
+
+<h3>Creating PDFs</h3>
+<ol>
+    <li>Open one or more existing PDFs (the source PDFs) into PdfFileReader objects.</li>
+    <li>Create a new PdfFileWriter object.</li>
+    <li>Copy pages from the PdfFileReader objects into the PdfFileWriter object.</li>
+    <li>Finally, use the PdfFileWriter object to write the output PDF.</li>
+</ol>
+
+<h3>Copying Pages</h3>
+<p>The code looks good to me. It imports the PyPDF2 library and uses it to open two PDF files (meetingminutes.pdf and meetingminutes2.pdf), read them using PdfFileReader, and combine them into a single PDF file called combinedminutes.pdf.</p>
+<script src="https://gist.github.com/TeddyCatTX/6409892c1eeb15154b2189bfa7385b44.js"></script>
+
+<h3>Rotating Pages</h3>
+<p>The code looks correct. It imports the PyPDF2 library, uses it to open a PDF file called meetingminutes.pdf and read it using PdfFileReader, rotates the first page by 90 degrees clockwise, and then writes the rotated page to a new PDF file called rotatedPage.pdf.</p>
+<script src="https://gist.github.com/TeddyCatTX/652d04b50d6dea978ceb4cb7d2cf53e8.js"></script>
+
+<h3>Overlaying Pages</h3>
+<p>The code looks correct. It imports the PyPDF2 library, uses it to open a PDF file called meetingminutes.pdf and read it using PdfFileReader, adds a watermark from a file called watermark.pdf to the first page of meetingminutes.pdf, and then writes the resulting watermarked pages to a new PDF file called watermarkedCover.pdf.</p>
+<script src="https://gist.github.com/TeddyCatTX/cc0fb40600af4c9f7c4698dd92f6dd2d.js"></script>
+
+<h3>Encrypting PDFs</h3>
+<p>One way to improve the code would be to use a stronger encryption algorithm. As I mentioned earlier, the encryption used by PyPDF2 is not very strong and can be easily broken. To use a stronger encryption algorithm, you would need to use a different library or approach.
+
+    <br><br>Another way to improve the code would be to handle exceptions more gracefully. For example, if the open call fails, the code currently raises an exception and the program crashes. You could add a try/except block to handle this situation and display a more informative error message to the user.
+    
+    <br><br>Here is an example of how you could modify the code to handle exceptions:</p>
+    <script src="https://gist.github.com/TeddyCatTX/ddeae4f75db08c374d0845f5722d4883.js"></script>
+
+<h2>Project: Combining Select Pages from Many PDFs</h2>
+<h3>
+    Step 1: Find All PDF Files<br>
+    Step 2: Open Each PDF<br>
+    Step 3: Add Each Page<br>
+    Step 4: Save the Results
+</h3>
+<p>To improve the code, you could add error handling to handle situations where a file cannot be opened or read. For example, if a PDF file is corrupted or has an invalid format, the code currently raises an exception and the program crashes. You could add a try/except block to handle these situations and display a more informative error message to the user.
+    <br><br>Here is an example of how you could modify the code to handle exceptions:</p>
+    <script src="https://gist.github.com/TeddyCatTX/1f3ed37ade7b324484896f822cb53787.js"></script>
+<p>In the code above, I added try/except blocks around the code that opens and reads the PDF files, and the code that saves the resulting PDF to a file. This allows the program to continue running even if a file cannot be opened or read, and displays an error message with details about the error.</p>
+    
+<h3>Ideas for Similar Programs</h3>
+<ul>
+    <li>Cut out specific pages from PDFs.</li>
+    <li>Reorder pages in a PDF.</li>
+    <li>Create a PDF from only those pages that have some specific text, identified by extractText().</li>
+</ul>
+
+<h2>Word Documents</h2>
+<ul>
+    <li>pip install -U python-docx==0.8.10 (Not working)</li>
+    <li>pip install python-docx==0.8.11 (ChatGPT)</li>
+    <li>Document object</li>
+    <li>Paragraph objects</li>
+    <li>Run objects</li>
+</ul>
+
+<h3>Reading Word Documents</h3>
+<script src="https://gist.github.com/TeddyCatTX/0a692c434b2429a1a1f41ecc3b0eeb1a.js"></script>
+
+<h3>Getting the Full Text from a .docx File</h3>
+<script src="https://gist.github.com/TeddyCatTX/47b02a2a07dba837ac3b298ea1f1e19b.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/fd9f27d460c3454aa43302e322c03cf9.js"></script>
+
+<h3>Styling Paragraph and Run Objects</h3>
+<ul>
+    <li>paragraph styles - can be applied to Paragraph objects</li>
+    <li>character styles - can be applied to Run objects</li>
+    <li>linked styles - can be applied to both kinds of objects</li>
+    <li>-----</li>
+    <li>You can give both Paragraph and Run objects styles by setting their style attribute to a string.</li>
+    <li>paragraphObj.style = 'Quote'</li>
+    <li>runObj.style = 'Quote Char'</li>
+</ul>
+
+<h3>Creating Word Documents with Nondefault Styles</h3>
+<p>If you want to create Word documents that use styles beyond the default ones, you will need to open Word to a blank Word document and create the styles yourself by clicking the New Style button at the bottom of the Styles pane</p>
+
+<h3>Run Attributes</h3>
+<script src="https://gist.github.com/TeddyCatTX/21d04b3a594b0665d82ee66f39ed526c.js"></script>
+
+<h3>Writing Word Documents</h3>
+<script src="https://gist.github.com/TeddyCatTX/8a6ff2d330141cda8b2b0fd0e8beb2a9.js"></script>
+
+<h3>Adding Headings</h3>
+<script src="https://gist.github.com/TeddyCatTX/7728b686d1faae025777dcb8906482ce.js"></script>
+
+<h3>Adding Line and Page Breaks</h3>
+<script src="https://gist.github.com/TeddyCatTX/f752e5afa1f51a076ee3750d9da1e997.js"></script>
+
+<h3>Adding Pictures</h3>
+<script src="https://gist.github.com/TeddyCatTX/9b89cf138f2909155a4d3d1c9e752aef.js"></script>
+
+<h2>Creating PDFs from Word Documents</h2>
+<ul>
+    <li>python -m pip install pypiwin32</li>
+    <li><a href="https://stackoverflow.com/questions/23864234/importerror-no-module-named-win32com-client" target="_blank">ImportError: No module named win32com.client</a></li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/5c2fc2aabbf8002b5cfb636026dc343f.js"></script>
+<h2>Summary</h2>
+
+<h2>Practice Questions</h2>
+<ol>
+    <li>A string value of the PDF filename is not passed to the PyPDF2.PdfFileReader() function. What do you pass to the function instead?<br> - A File object returned from open()<br><br></li>
+    <li>What modes do the File objects for PdfFileReader() and PdfFileWriter() need to be opened in?<br> - Read-binary ('rb') for PdfFileReader() and write-binary ('wb') for PdfFileWriter()<br><br></li>
+    <li>How do you acquire a Page object for page 5 from a PdfFileReader object?<br> - Calling getPage(4) will return a Page object for page 5, since page 0 is the first page.<br><br></li>
+    <li>What PdfFileReader variable stores the number of pages in the PDF document?<br> - The numPages variable stores an integer of the number of pages in the PdfFileReader object.<br><br></li>
+    <li>If a PdfFileReader object’s PDF is encrypted with the password swordfish, what must you do before you can obtain Page objects from it?<br> - Call decrypt('swordfish').<br><br></li>
+    <li>What methods do you use to rotate a page?<br> - The rotateClockwise() and rotateCounterClockwise() methods. The degrees to rotate is passed as an integer argument.<br><br></li>
+    <li>What method returns a Document object for a file named demo.docx?<br> - docx.Document('demo.docx')<br><br></li>
+    <li>What is the difference between a Paragraph object and a Run object?<br> - A document contains multiple paragraphs. A paragraph begins on a new line and contains multiple runs. Runs are contiguous groups of characters within a paragraph.<br><br></li>
+    <li>How do you obtain a list of Paragraph objects for a Document object that’s stored in a variable named doc?<br> - Use doc.paragraphs.<br><br></li>
+    <li>What type of object has bold, underline, italic, strike, and outline variables?<br> - A Run object has these variables (not a Paragraph).<br><br></li>
+    <li>What is the difference between setting the bold variable to True, False, or None?<br> - True always makes the Run object bolded and False makes it always not bolded, no matter what the style’s bold setting is. None will make the Run object just use the style’s bold setting.<br><br></li>
+    <li>How do you create a Document object for a new Word document?<br> - Call the docx.Document() function.<br><br></li>
+    <li>How do you add a paragraph with the text 'Hello, there!' to a Document object stored in a variable named doc?<br> - doc.add_paragraph('Hello there!')<br><br></li>
+    <li>What integers represent the levels of headings available in Word documents?<br> - The integers 0, 1, 2, 3, and 4</li>
+</ol>
+
+<h2>Practice Projects</h2>
+
+<h3>PDF Paranoia</h3>
+<p>Here is an example of a Python script that uses the os.walk function to go through every PDF file in a folder and its subfolders, encrypt the PDFs using a password provided on the command line, and save the encrypted PDFs with an "_encrypted.pdf" suffix added to the original filename. The script will also attempt to read and decrypt the encrypted PDF files to ensure that they were encrypted correctly before deleting the original files:</p>
+<script src="https://gist.github.com/TeddyCatTX/168c73c134bcc0ccd0d70f1bf28625f7.js"></script>
+<p>Then, write a program that finds all encrypted PDFs in a folder (and its subfolders) and creates a decrypted copy of the PDF using a provided password. If the password is incorrect, the program should print a message to the user and continue to the next PDF.</p>
+<script src="https://gist.github.com/TeddyCatTX/ce1e2b631f526ab02ed6f236db5704b3.js"></script>
+ChatCPT
+<p>
+    Here are a few suggestions to improve the code:
+    <ol>
+        <li>Use the os.path.splitext() function to separate the file name and extension instead of hardcoding the indices for slicing. This will make the code more robust and easier to read.<br><br></li>
+        <li>Instead of using a hardcoded string to check if a file is an encrypted PDF, use the os.path.splitext() function again to check the extension of the file. This will allow the code to work with other file types and extensions in the future.<br><br></li>
+        <li>Use the try and except statements to handle any errors that may occur while reading or decrypting the PDFs. This will allow the code to continue running even if an error occurs, rather than crashing.<br><br></li>
+        <li>Add a check to make sure that the password provided as a command line argument is not an empty string. If it is, prompt the user to enter a password.<br><br></li>
+        <li>Instead of using the continue statement to skip to the next PDF in the loop when the password is incorrect, use a break statement to exit the loop completely. This will avoid unnecessary iterations and improve the efficiency of the code.</li>
+    </ol>
+Here's an example of how the code could be modified to implement these suggestions:</p>
+<script src="https://gist.github.com/TeddyCatTX/0003ff9eb389f87594f0f1c87466f6ed.js"></script>
+
+<h3>Custom Invitations as Word Documents</h3>
+<script src="https://gist.github.com/TeddyCatTX/c7f8f027a88999089c8ea59ae47881ee.js"></script>
+ChatGPT
+<p>Here are a few suggestions for improving the code:
+    <ol>
+        <li>Use a with statement to open the guests file. This will ensure that the file is closed properly when you are finished reading from it.<br><br></li>
+        <li>Consider using the splitlines() method instead of split(sep='\n'). This will split the file contents on all newline characters, including \r\n and \n, rather than just \n.<br><br></li>
+        <li>Instead of using doc.add_page_break() to add a page break before each invitation, consider using a for loop to iterate over the paragraphs in the invitation template and add them to the document one by one. This will allow you to add a page break only after the last paragraph of the template, rather than before each paragraph.<br><br></li>
+        <li>Use string formatting to insert the guest's name and the event date and time into the invitation template. This will make it easier to modify the template in the future and will make the code more readable.</li>
+    </ol>
+    Here's how the code might look after making these changes:</p>
+    <script src="https://gist.github.com/TeddyCatTX/8839b3c42b8043cc4e53d3baef50dffe.js"></script>
+    Final Version by Me:
+    <script src="https://gist.github.com/TeddyCatTX/f6ef4313dd3d0edbdb1091699a7d8bd5.js"></script>
+
+<h3>Brute-Force PDF Password Breaker</h3>
+<script src="https://gist.github.com/TeddyCatTX/462230cdae57fc804f1bfef855592101.js"></script>
+ChatGPT
+<p>Here is how you can improve your code:
+    <ol>
+        <li>The decrypt method of the PdfFileReader class returns a boolean value (True or False) depending on whether the password was correct or not, so you should check for this value instead of comparing it to 1.<br><br></li>
+        <li>Instead of using break to exit the loop when the password is found, you can use a flag variable to keep track of whether the password has been found. This will make it easier to add additional logic or functionality later on.<br><br></li>
+        <li>You can optimize the code by checking for both upper and lower case versions of the word in a single if statement, rather than in separate if and elif statements.</li>
+    </ol>  
+    Here is the revised code with these changes:</p>
+    <script src="https://gist.github.com/TeddyCatTX/ce2a073443b0074da05661a837d77617.js"></script>

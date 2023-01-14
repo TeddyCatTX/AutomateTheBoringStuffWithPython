@@ -1,0 +1,522 @@
+<link rel="stylesheet" href="styles.css">
+
+<h1>Chapter 20<br>Controlling the Keyboard and Mouse with GUI Automation</h1>
+<ol>
+    <li>Installing the pyautogui Module</li>
+    <li>Setting Up Accessibility Apps on macOS</li>
+    <li>Staying on Track
+        <ol>
+            <li>Pauses and Fail-Safes</li>
+            <li>Shutting Down Everything by Logging Out</li>
+        </ol>
+    </li>
+    <li>Controlling Mouse Movement
+        <ul>
+            <li>Moving the Mouse</li>
+            <li>Getting the Mouse Position</li>
+        </ul>
+    </li>
+    <li>Controlling Mouse Interaction
+        <ul>
+            <li>Clicking the Mouse</li>
+            <li>Dragging the Mouse</li>
+            <li>Scrolling the Mouse</li>
+        </ul>
+    </li>
+    <li>Planning Your Mouse Movements</li>
+    <li>Working with the Screen
+        <ul>
+            <li>Getting a Screenshot</li>
+            <li>Analyzing the Screenshot</li>
+        </ul>
+    </li>
+    <li>Image Recognition</li>
+    <li>Getting Window Information
+        <ul>
+            <li>Obtaining the Active Window</li>
+            <li>Other Ways of Obtaining Windows</li>
+            <li>Manipulating Windows</li>
+        </ul>
+    </li>
+    <li>Controlling the Keyboard
+        <ul>
+            <li>Sending a String from the Keyboard</li>
+            <li>Key Names</li>
+            <li>Pressing and Releasing the Keyboard</li>
+            <li>Hotkey Combinations</li>
+        </ul>
+    </li>
+    <li>Setting Up Your GUI Automation Scripts</li>
+    <li>Review of the PyAutoGUI Functions</li>
+    <li>Project: Automatic Form Filler
+        <ul>
+            <li>
+                Step 1: Figure Out the Steps<br>
+                Step 2: Set Up Coordinates<br>
+                Step 3: Start Typing Data<br>
+                Step 4: Handle Select Lists and Radio Buttons<br>
+                Step 5: Submit the Form and Wait
+            </li>
+        </ul>
+    </li>
+    <li>Displaying Message Boxes</li>
+    <li>Summary</li>
+    <li>Practice Questions</li>
+    <li>Practice Projects
+        <ul>
+            <li>Looking Busy</li>
+            <li>Using the Clipboard to Read a Text Field</li>
+            <li>Instant Messenger Bot</li>
+            <li>Game-Playing Bot Tutorial</li>
+        </ul>
+    </li>
+</ul>
+
+<h1>Chapter 20<br>Controlling the Keyboard and Mouse with GUI Automation</h1>
+<ul>
+    <li>This chapter covers only a subset of PyAutoGUI’s features; you can find the full documentation at <a href="https://pyautogui.readthedocs.io/" target="_blank">https://pyautogui.readthedocs.io/</a>.</li>
+</ul>
+
+<h2>Installing the pyautogui Module</h2>
+<ul>
+    <li>pip install pyautogui</li>
+</ul>
+
+<h2>Setting Up Accessibility Apps on macOS</h2>
+
+<h2>Staying on Track</h2>
+<ul>
+    <li>Before you jump into a GUI automation, you should know how to escape problems that may arise.</li>
+</ul>
+
+<h3>Pauses and Fail-Safes</h3>
+<ul>
+    <li>If your program has a bug and you’re unable to use the keyboard and mouse to shut it down, you can use PyAutoGUI’s fail-safe feature.</li>
+    <li><p style="color:red;">If you find yourself in a situation where you need to stop your PyAutoGUI program, just slam the mouse toward a corner to stop it.</p></li>
+</ul>
+
+
+<h3>Shutting Down Everything by Logging Out</h3>
+<ul>
+    <li>Perhaps the simplest way to stop an out-of-control GUI automation program is to log out, which will shut down all running programs.</li>
+</ul>
+
+<h2>Controlling Mouse Movement</h2>
+<ul>
+    <li>The mouse functions of PyAutoGUI use x- and y-coordinates.</li>
+</ul>
+
+<p>The pyautogui.size() function returns a two-integer tuple of the screen’s width and height in pixels. Enter the following into the interactive shell:</p>
+<script src="https://gist.github.com/TeddyCatTX/423ea8f06e7c00b9f4a97ae96387d2ca.js"></script>
+
+<h3>Moving the Mouse</h3>
+<p>This example will move the mouse cursor in a square pattern, starting at the first provided coordinate and visiting the other three in a clockwise direction. The cursor will repeat this pattern a total of 10 times.</p>
+<script src="https://gist.github.com/TeddyCatTX/3201ba394be792190e60a61a878ef147.js"></script>
+
+<p>The pyautogui.move() function moves the mouse cursor relative to its current position.</p>
+<script src="https://gist.github.com/TeddyCatTX/718caee5d62740c1d84b477b6b8f416d.js"></script>
+
+<h3>Getting the Mouse Position</h3>
+<p>You can determine the mouse’s current position by calling the pyautogui.position() function</p>
+<script src="https://gist.github.com/TeddyCatTX/82958691b16d2ede647c8ee400b354b2.js"></script>
+
+<h2>Controlling Mouse Interaction</h2>
+<ul><li>
+    Now that you know how to move the mouse and figure out where it is on the screen, you’re ready to start clicking, dragging, and scrolling.
+</li></ul>
+
+<h3>Clicking the Mouse</h3>
+<p>To send a virtual mouse click to your computer, call the pyautogui.click() method.</p>
+<script src="https://gist.github.com/TeddyCatTX/49a9be9131e0afca5b04e5224d68591f.js"></script>
+<ul>
+    <li>pyautogui.click()</li>
+    <li>pyautogui.mouseDown()</li>
+    <li>pyautogui.mouseUp()</li>
+    <li>pyautogui.doubleClick()</li>
+    <li>pyautogui.rightClick() </li>
+    <li>pyautogui.middleClick()</li>
+</ul>
+
+<h3>Dragging the Mouse</h3>
+
+<p>PyAutoGUI provides the pyautogui.dragTo() and pyautogui.drag() functions to drag the mouse cursor to a new location or a location relative to its current one. </p>
+<ul>
+    <li><a href="https://sumo.app/" target="_blank">https://sumo.app/</a></li>
+</ul>
+
+<p>With the mouse cursor over the drawing application’s canvas and the Pencil or Brush tool selected, enter the following into a new file editor window and save it as spiralDraw.py:</p>
+<script src="https://gist.github.com/TeddyCatTX/6c49386fce9a6d58c2f963715c094fc9.js"></script>
+
+<h3>Scrolling the Mouse</h3>
+<p>You’ll see Mu scroll upward if the mouse cursor is over a text field that can be scrolled up.</p>
+<script src="https://gist.github.com/TeddyCatTX/1ee44d011bc42c6c7c06ccad7ae9fb5b.js"></script>
+
+<h2>Planning Your Mouse Movements</h2>
+<p>The pyautogui.mouseInfo() function launches a small application named MouseInfo that’s included with PyAutoGUI. This makes the MouseInfo window appear:</p>
+<script src="https://gist.github.com/TeddyCatTX/602a67d6c57886d36a3f8fd7e7ef4d74.js"></script>
+
+<h2>Working with the Screen</h2>
+<p>Your GUI automation programs don’t have to click and type blindly. PyAutoGUI has screenshot features that can create an image file based on the current contents of the screen.</p>
+
+<h3>Getting a Screenshot</h3>
+<p>To take screenshots in Python, call the pyautogui.screenshot() function. Enter the following into the interactive shell:</p>
+<script src="https://gist.github.com/TeddyCatTX/53d32a47b5afbd38f4a2d1feb55aa514.js"></script>
+<p>The im variable will contain the Image object of the screenshot. You can now call methods on the Image object in the im variable, just like any other Image object. Chapter 19 has more information about Image objects.</p>
+
+<h3>Analyzing the Screenshot</h3>
+
+<p>You can obtain the RGB color value of a particular pixel on the screen with the pixel() function. Enter the following into the interactive shell:</p>
+<script src="https://gist.github.com/TeddyCatTX/e9efcfb6a3c06176c4fbeb55d36a066e.js"></script>
+
+<p>After using pixel() to get an RGB tuple for the color of a pixel at specific coordinates ?, pass the same coordinates and RGB tuple to pixelMatchesColor() ?, which should return True.</p>
+<script src="https://gist.github.com/TeddyCatTX/2c99d8042f7d161da3c45e026817628e.js"></script>
+
+<h2>Image Recognition</h2>
+<p>To see how locateOnScreen() works, try taking a screenshot of a small area on your screen; then save the image and enter the following into the interactive shell, replacing 'submit.png' with the filename of your screenshot:</p>
+<script src="https://gist.github.com/TeddyCatTX/9adcd239c7ba347454a1a5f3daa3e3c5.js"></script>
+
+<p>If the image can be found in several places on the screen, locateAllOnScreen() will return a Generator object. </p>
+<script src="https://gist.github.com/TeddyCatTX/d34861e282bc41fb702c5c1e0b20d096.js"></script>
+
+<p>Once you have the four-integer tuple for the specific image you want to select, you can click the center of this area by passing the tuple to click(). Enter the following into the interactive shell:</p>
+<script src="https://gist.github.com/TeddyCatTX/a4ec57a9dcd2959194c79185da4d7e87.js"></script>
+
+<p>As a shortcut, you can also pass the image filename directly to the click() function:</p>
+<script src="https://gist.github.com/TeddyCatTX/d3dff26a040f4b0742217dcd6d959f83.js"></script>
+
+<p>Since you can’t be sure that your program will always find the image, it’s a good idea to use the try and except statements when calling locateOnScreen().</p>
+<script src="https://gist.github.com/TeddyCatTX/1a3e8d72ea94e76723b9501a78dd47be.js"></script>
+
+<h2>Getting Window Information</h2>
+<p>If you need to find where a particular window is on the screen, it’s faster and more reliable to use PyAutoGUI’s window features.</p>
+
+<h3>Obtaining the Active Window</h3>
+<p>To get the window’s position, size, and title information from the window object, for example, enter the following into the interactive shell:</p>
+<script src="https://gist.github.com/TeddyCatTX/a537f84d0ac0f23668f211b4cf95d882.js"></script>
+
+<h3>Other Ways of Obtaining Windows</h3>
+<p>The following four functions return a list of Window objects. If they’re unable to find any windows, they return an empty list:</p>
+<ul>
+    <li>pyautogui.getAllWindows() 
+        <br> - Returns a list of Window objects for every visible window on the screen. <br><br>
+    </li>
+    <li>pyautogui.getWindowsAt(x, y) 
+        <br> - Returns a list of Window objects for every visible window that includes the point (x, y). <br><br>
+    </li>
+    <li>pyautogui.getWindowsWithTitle(title) 
+        <br> - Returns a list of Window objects for every visible window that includes the string title in its title bar.<br><br>
+    </li>
+    <li>pyautogui.getActiveWindow() 
+        <br>Returns the Window object for the window that is currently receiving keyboard focus.
+    </li>
+</ul>
+<p>PyAutoGUI also has a pyautogui.getAllTitles() function, which returns a list of strings of every visible window.</p>
+
+<h3>Manipulating Windows</h3>
+
+<p>Windows attributes can do more than just tell you the size and position of the window.</p>
+<script src="https://gist.github.com/TeddyCatTX/09dd58324ec361842256ee83371cfd86.js"></script>
+
+<p>You can also find out and change the window’s minimized, maximized, and activated states. Try entering the following into the interactive shell:</p>
+<script src="https://gist.github.com/TeddyCatTX/bbf10a514bdf798ff7da2ba98df73d42.js"></script>
+
+<ul>
+    <li><a href="https://pyautogui.readthedocs.io/en/latest/" target="_blank">Complete documentation for PyAutoGUI</a></li>
+    <li><a href="https://pygetwindow.readthedocs.io/en/latest/" target="_blank">Complete documentation for PyGetWindow</a></li>
+</ul>
+
+<h2>Controlling the Keyboard</h2>
+<p>PyAutoGUI also has functions for sending virtual keypresses to your computer, which enables you to fill out forms or enter text into applications.</p>
+
+<h3>Sending a String from the Keyboard</h3>
+
+<p>The pyautogui.write() function sends virtual keypresses to the computer.</p>
+<script src="https://gist.github.com/TeddyCatTX/d6dcf71b20c099878c79335c00a00bd0.js"></script>
+
+<p>You can pass an optional second argument to add a short pause between each character.</p>
+<script src="https://gist.github.com/TeddyCatTX/5f193247a405208e6041c9dd649826a0.js"></script>
+
+<h3>Key Names</h3>
+
+<p>The following call presses the A key, then the B key, then the left arrow key twice, and finally the X and Y keys:</p>
+<script src="https://gist.github.com/TeddyCatTX/e8db8db81bafc3168741d8436aec69fc.js"></script>
+<script src="https://gist.github.com/TeddyCatTX/b3758616d8ffa03ca8dfb11fe70b1074.js"></script>
+
+<p>You can also examine the pyautogui.KEYBOARD_KEYS list to see all possible keyboard key strings that PyAutoGUI will accept.</p>
+
+<h3>Pressing and Releasing the Keyboard</h3>
+<ul>
+    <li>mouseDown()</li>
+    <li>mouseUp()</li>
+    <li>pyautogui.keyDown()</li>
+    <li>pyautogui.keyUp()</li>
+    <li>pyautogui.press()</li>
+</ul>
+
+<p>Run the following code, which will type a dollar sign character (obtained by holding the SHIFT key and pressing 4):</p>
+<script src="https://gist.github.com/TeddyCatTX/dbef496853bd68196e1f550afb5111cf.js"></script>
+
+<h3>Hotkey Combinations</h3>
+<p>A hotkey or shortcut is a combination of keypresses to invoke some application function. To do this with PyAutoGUI’s keyDown() and keyUp() functions, you would have to enter the following:</p>
+<script src="https://gist.github.com/TeddyCatTX/90811ea608e09150531f042859a21edd.js"></script>
+
+<p>This is rather complicated. Instead, use the pyautogui.hotkey() function, which takes multiple keyboard key string arguments, presses them in order, and releases them in the reverse order. For the CTRL-C example, the code would simply be as follows:</p>
+<script src="https://gist.github.com/TeddyCatTX/0056cf891fd81ab8adcd9d676165cc3f.js"></script>
+
+<h2>Setting Up Your GUI Automation Scripts</h2>
+<p>Here are some tips for setting up your GUI automation scripts:</p>
+<ul>
+    <li>Use the same screen resolution each time you run the script.<br><br></li>
+    <li>The application window that your script clicks should be maximized.<br><br></li>
+    <li>Add generous pauses while waiting for content to load.<br><br></li>
+    <li>Use locateOnScreen() to find buttons and menus to click, rather than relying on XY coordinates.<br><br></li>
+    <li>Use getWindowsWithTitle() to ensure that the application window you think your script is clicking on exists, and use the activate() method to put that window in the foreground.<br><br></li>
+    <li>Use the logging module from Chapter 11 to keep a log file of what your script has done.<br><br></li>
+    <li>Add as many checks as you can to your script.<br><br></li>
+    <li>You may want to supervise the script when it first begins to ensure that it’s working correctly.</li>
+</ul>
+
+<p>You might also want to put a pause at the start of your script so the user can set up the window the script will click on.</p>
+<script src="https://gist.github.com/TeddyCatTX/434e9dcd263e10be47db2f5b369b7821.js"></script>
+
+<h2>Review of the PyAutoGUI Functions</h2>
+<p>Since this chapter covered many different functions, here is a quick summary reference:</p>
+<ul>
+    <li>moveTo(x, y) </li>
+    <li>-- Moves the mouse cursor to the given x and y coordinates.</li>
+    <li>move(xOffset, yOffset) </li>
+    <li>-- Moves the mouse cursor relative to its current position.</li>
+    <li>dragTo(x, y) </li>
+    <li>-- Moves the mouse cursor while the left button is held down.</li>
+    <li>drag(xOffset, yOffset) </li>
+    <li>-- Moves the mouse cursor relative to its current position while the left button is held down.</li>
+    <li>click(x, y, button)</li>
+    <li>>> Simulates a click (left button by default).</li>
+    <li>rightClick()</li>
+    <li>-- Simulates a right-button click.</li>
+    <li>middleClick()</li>
+    <li>-- Simulates a middle-button click.</li>
+    <li>doubleClick()</li>
+    <li>-- Simulates a double left-button click.</li>
+    <li>mouseDown(x, y, button)</li>
+    <li>-- Simulates pressing down the given button at the position x, y.</li>
+    <li>mouseUp(x, y, button)</li>
+    <li>-- Simulates releasing the given button at the position x, y.</li>
+    <li>scroll(units)</li>
+    <li>-- Simulates the scroll wheel. A positive argument scrolls up; a negative argument scrolls down.</li>
+    <li>write(message)</li>
+    <li>-- Types the characters in the given message string.</li>
+    <li>write([key1, key2, key3])</li>
+    <li>-- Types the given keyboard key strings.</li>
+    <li>press(key)</li>
+    <li>-- Presses the given keyboard key string.</li>
+    <li>keyDown(key)</li>
+    <li>-- Simulates pressing down the given keyboard key.</li>
+    <li>keyUp(key)</li>
+    <li>-- Simulates releasing the given keyboard key.</li>
+    <li>hotkey([key1, key2, key3])</li>
+    <li>-- Simulates pressing the given keyboard key strings down in order and then releasing them in reverse order.</li>
+    <li>screenshot()</li>
+    <li>-- Returns a screenshot as an Image object. (See Chapter 19 for information on Image objects.)</li>
+    <li>getActiveWindow()<br>getAllWindows()<br>getWindowsAt()<br>getWindowsWithTitle()</li>
+    <li>-- These functions return Window objects that can resize and reposition application windows on the desktop.</li>
+    <li>getAllTitles()</li>
+    <li>-- Returns a list of strings of the title bar text of every window on the desktop.</li>
+</ul>
+
+<h2>Project: Automatic Form Filler</h2>
+<p>The form for this project is a Google Docs form that you can find at <a href="https://autbor.com/form" target="_blank">https://autbor.com/form</a>. It looks like Figure 20-7.</p>
+<h3>
+    Step 1: Figure Out the Steps<br>
+    Step 2: Set Up Coordinates<br>
+    Step 3: Start Typing Data<br>
+    Step 4: Handle Select Lists and Radio Buttons<br>
+    Step 5: Submit the Form and Wait
+</h3>
+<script src="https://gist.github.com/TeddyCatTX/09e1d4c9e20db497aef8ec9416a17d39.js"></script>
+
+<h2>Displaying Message Boxes</h2>
+<p>PyAutoGUI offers pop-up message boxes to provide notifications to the user and receive input from them. There are four message box functions:</p>
+<ul>
+    <li>pyautogui.alert(text)<br> - Displays text and has a single OK button. <br><br> </li>
+    <li>pyautogui.confirm(text) <br> - Displays text and has OK and Cancel buttons, returning either 'OK' or 'Cancel' depending on the button clicked.<br><br></li>
+    <li>pyautogui.prompt(text) <br> - Displays text and has a text field for the user to type in, which it returns as a string.<br><br></li>
+    <li>pyautogui.password(text) <br> - Is the same as prompt(), but displays asterisks so the user can enter sensitive information such as a password.</li>
+</ul>
+<p>These functions also have an optional second parameter that accepts a string value to use as the title in the title bar of the message box.</p>
+<script src="https://gist.github.com/TeddyCatTX/beff83ffc8a59ab8dbe9b89a4b018197.js"></script>
+
+<p>These functions can be used to provide notifications or ask the user questions while the rest of the program interacts with the computer through the mouse and keyboard. The full online documentation can be found at <a href="https://pymsgbox.readthedocs.io" target="_blank">https://pymsgbox.readthedocs.io</a>.</p>
+
+<h2>Summary</h2>
+<p>GUI automation with the pyautogui module allows you to interact with applications on your computer by controlling the mouse and keyboard.</p>
+
+<h2>Practice Questions</h2>
+    <ol>
+        <li>How can you trigger PyAutoGUI’s fail-safe to stop a program?
+            <br>- Move the mouse to the upper-left corner of the screen, that is, the (0, 0) coordinates.<br><br>
+        </li>
+        <li>What function returns the current resolution()?
+            <br>- pyautogui.size() returns a tuple with two integers, for the width and height of the screen.<br><br>
+        </li>
+        <li>What function returns the coordinates for the mouse cursor’s current position?
+            <br>- pyautogui.position() returns a tuple with two integers, for the x- and y-coordinates of the mouse cursor.<br><br>
+        </li>
+        <li>What is the difference between pyautogui.moveTo() and pyautogui.move()?
+            <br>- The moveTo() function moves the mouse to absolute coordinates on the screen, while the move() function moves the mouse relative to the mouse’s current position.<br><br>
+        </li>
+        <li>What functions can be used to drag the mouse?
+            <br>- pyautogui.dragTo() and pyautogui.drag()<br><br>
+        </li>
+        <li>What function call will type out the characters of "Hello, world!"?
+            <br>- pyautogui.typewrite('Hello, world!')<br><br>
+        </li>
+        <li>How can you do keypresses for special keys such as the keyboard’s left arrow key?
+            <br>- Either pass a list of keyboard key strings to pyautogui.write() (such as 'left') or pass a single keyboard key string to pyautogui.press().<br><br>
+        </li>
+        <li>How can you save the current contents of the screen to an image file named screenshot.png?
+            <br>- pyautogui.screenshot('screenshot.png')<br><br>
+        </li>
+        <li>What code would set a two-second pause after every PyAutoGUI function call?
+            <br>- pyautogui.PAUSE = 2<br><br>
+        </li>
+        <li>If you want to automate clicks and keystrokes inside a web browser, should you use PyAutoGUI or Selenium?
+            <br>- You should use Selenium for controlling a web browser instead of PyAutoGUI.<br><br>
+        </li>
+        <li>What makes PyAutoGUI error-prone?
+            <br>- PyAutoGUI clicks and types blindly and cannot easily find out if it’s clicking and typing into the correct windows. Unexpected pop-up windows or errors can throw the script off track and require you to shut it down.<br><br>
+        </li>
+        <li>How can you find the size of every window on the screen that includes the text Notepad in its title?
+            <br>- Call the pyautogui.getWindowsWithTitle('Notepad') function.<br><br>            
+        </li>
+        <li>How can you make, say, the Firefox browser active and in front of every other window on the screen?
+            <br>- Run w = pyautogui.getWindowsWithTitle('Firefox'), and then run w.activate().<br><br>            
+        </li>
+    </ol>
+
+<h2>Practice Projects</h2>
+
+<h3>Looking Busy</h3>
+<ul>
+    <li><a href="https://github.com/IanFindlay/automate-the-boring-stuff-projects/blob/master/Chapter%2018/looking_busy.py" target="_blank">IanFindlay</a> <br><br> </li>
+</ul>
+<script src="https://gist.github.com/TeddyCatTX/b007bcddb2444b94ef4b59abfe97a553.js"></script>
+
+<ul>
+    <li><a href="https://github.com/ValeWasTaken/Programming_Books/blob/master/Automate_the_Boring_Stuff/Chapter_018/Practice_Problems/Looking_Busy.py" target="_blank">ValeWasTaken</a> <br><br> </li>
+</ul>
+
+<script src="https://gist.github.com/TeddyCatTX/99438eb179b32af5b4090ba77b0c0581.js"></script>
+
+<h3>Using the Clipboard to Read a Text Field</h3>
+
+<ul>
+    <li><a href="https://stackoverflow.com/questions/74033308/python-how-do-i-get-the-window-handle-from-my-own-application" target="_blank">Python - How do I get the window handle from my OWN application</a> <br><br> </li>
+</ul>
+
+<script src="https://gist.github.com/TeddyCatTX/ed3259a239b22ea4ac8229b9a8d9f747.js"></script>
+<p>ChatGPT:</p>
+<p>This code uses pyautogui and pyperclip libraries to automate the process of copying the contents of a Notepad window to the clipboard.
+    <br><br>
+    First, it uses pyautogui.getWindowsWithTitle("NotePad")[0].maximize() to maximize the Notepad window.
+    <br><br>
+    Then it uses pyautogui.hotkey('ctrl', 'a') to select all the text inside the notepad window and pyautogui.hotkey('ctrl', 'c') to copy the selected text.
+    <br><br>
+    Then it uses pyperclip.paste() to read the text that's in the clipboard, and assigns it to the copied_text variable.
+    <br><br>
+    Finally, it prints the copied_text variable, which should contain the text from the Notepad window.
+    <br><br>
+    And it uses pyautogui.getWindowsWithTitle("NotePad")[0].minimize() to minimize the notepad window.
+    <br><br>
+    Please note that this script works only on Windows, and it requires the window title to be exactly "NotePad" (including the capitalization). 
+    <br><br>
+    Also, it assumes that only one instance of NotePad is open, otherwise it will take the first one returned by getWindowsWithTitle method.
+    <br><br>
+    Please let me know if there is anything else I can help you with.</p>
+
+<script src="https://gist.github.com/TeddyCatTX/0afdf9a058927231e942a6f9a919e246.js"></script>
+<p>ChatGPT:</p>
+<p>The code you provided uses a combination of the pyautogui, pyperclip, and win32gui libraries to automate the process of copying the contents of a Notepad window to the clipboard.
+    <br><br>
+    It first uses win32gui.FindWindow() to get the hWnd of the Notepad window using the classname "Notepad", It then uses win32gui.GetWindowRect() to get the position and size of the Notepad window represented by the hWnd.
+    <br><br>
+    Then it uses win32gui.SetForegroundWindow() to ensure that the Notepad window is at the front of the screen and it uses pyautogui.click() to move the cursor to the Notepad window and to put the keyboard focus there.
+    <br><br>
+    Then it uses pyautogui.hotkey('ctrl', 'a') to select all the text inside the notepad window and pyautogui.hotkey('ctrl', 'c') to copy the selected text.
+    <br><br>
+    Then it uses pyperclip.paste() to read the text that's in the clipboard, and assigns it to the copied_text variable.
+    <br><br>
+    Finally, it prints the copied_text variable, which should contain the text from the Notepad window.
+    <br><br>
+    The left + 100 and top + 100 values are used to specify the coordinates where the click event should take place, These values are used to click on the specific location inside the notepad window and you can adjust them as you need.
+    <br><br>
+    Please keep in mind that the code you provided only works on Windows, and it will not work on other operating systems. Also, make sure that notepad window is active and open.
+    <br><br>
+    Please let me know if there is anything else I can help you with.</p>
+
+<h3>Instant Messenger Bot</h3>
+
+<script src="https://gist.github.com/TeddyCatTX/d146e446dec69ae830c27c19a14af3ee.js"></script>
+<p>ChatGPT:</p>
+<p>This script appears to be a Python script that uses several libraries (pyautogui, pyperclip, win32gui, and re) to automate tasks on a computer. 
+    <br><br>
+    The script first opens a website (https://text.npr.org/) and then uses pyautogui to simulate keyboard shortcuts (CTRL-A and CTRL-C) to select and copy all the text from the website. 
+    <br><br>
+    The script then uses the pyperclip library to paste the copied text into a variable called "copied_text". 
+    <br><br>
+    The script then uses the win32gui library to find a window with the title "LINE", obtains the hWnd of that window, activates the window, and then uses pyautogui to simulate mouse clicks and keyboard presses to send the text to a specific group in the LINE messaging app.</p>
+
+
+    <p>Also Chat GPT:</p>
+<p>If the goal is to send the text from the website to a specific group in the LINE messaging app, there are a few ways the script could be written. Here's one possible way:</p>
+<script src="https://gist.github.com/TeddyCatTX/38d09475b2c5aafd3824ef2c935f0691.js"></script>
+<p>This script uses the requests and BeautifulSoup libraries to scrape the text from the website and the pyautogui library to automate the tasks on the computer.
+    <br><br>
+    It uses requests to get the webpage, uses BeautifulSoup to parse the HTML, extracts the text from the website and then uses pyautogui to open the LINE app and navigate to the specific group you want to send the message to. 
+    <br><br>
+    Finally, it writes the text in the chat box and sends the message.
+    <br><br>
+    Please note that this script is just an example and might need some adjustments to work properly on your specific computer.</p>
+
+<ul>
+    <li>
+        <a href="https://github.com/IanFindlay/automate-the-boring-stuff-projects/blob/master/Chapter%2018/im_bot.py" target="_blank">IanFindlay / Instant Messenger Bot</a>
+    </li>
+</ul>
+
+<h3>Game-Playing Bot Tutorial</h3>
+<ul>
+    <li><a href="https://www.reddit.com/r/learnpython/comments/1bm1db/how_to_build_a_python_bot_that_can_play_web_games/" target="_blank">Reddit: How to Build a Python Bot That Can Play Web Games.</a></li>
+    <li><a href="https://code.tutsplus.com/tutorials/how-to-build-a-python-bot-that-can-play-web-games--active-11117" target="_blank">Tutsplus: How to Build a Python Bot That Can Play Web Games.</a></li>
+    <li><a href="https://github.com/asweigart/sushigoroundbot/" target="_blank">The source code for this bot.</a></li>
+    <li><a href="https://youtu.be/lfk_T6VKhTE" target="_blank">A video of the bot playing the game.</a></li>
+</ul>
+
+<h1>= Thursday, January 12, 2023 =</h1>
+
+<h2>ChatGPT</h2>
+<p>The methods that are available in pyautogui are:</p>
+<ol>
+    <li>moveTo(): <br>&emsp;
+        Move the mouse cursor to a specific position <br><br> </li>
+    <li>moveRel():<br>&emsp;
+         Move the mouse cursor relative to its current position<br><br></li>
+    <li>click(): <br>&emsp;
+        Click the mouse at the current position<br><br></li>
+    <li>doubleClick(): <br>&emsp;
+        Double-click the mouse at the current position<br><br></li>
+    <li>rightClick(): <br>&emsp;
+        Right-click the mouse at the current position<br><br></li>
+    <li>middleClick(): <br>&emsp;
+        Middle-click the mouse at the current position<br><br></li>
+    <li>dragTo(): <br>&emsp;
+        Drag the mouse to a specific position<br><br></li>
+    <li>dragRel(): <br>&emsp;
+        Drag the mouse relative to its current position<br><br></li>
+    <li>press(): <br>&emsp;
+        Press a keyboard key<br><br></li>
+    <li>typewrite(): <br>&emsp;
+        Type a string of characters<br><br></li>
+    <li>hotkey(): <br>&emsp;
+        Press a combination of keyboard keys</li>
+</ol>
